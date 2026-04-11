@@ -1,27 +1,48 @@
+import Container from "@/components/layout/Container";
+
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Qualifications from "@/components/sections/Qualifications";
+import Services from "@/components/sections/Services";
+import Projects from "@/components/sections/Projects";
+import Certifications from "@/components/sections/Certifications";
+import Blogs from "@/components/sections/Blogs";
+import Contact from "@/components/sections/Contact";
+
 export default function Home() {
   return (
-    <main className="p-10 space-y-6">
-      <h1 className="text-5xl">Heading Test (Instrument Serif)</h1>
-      
-      <h2 className="text-3xl">Subheading Test</h2>
+    <main>
 
-      <p className="text-lg">
-        This is a paragraph using Nunito. It should feel clean, readable, and slightly warm.
-      </p>
+      <Hero />
 
-      <div className="p-6 border border-[#C8BAA6] bg-[#EDE8DF] rounded-lg">
-        <p>
-          This is a card surface. Background should be slightly darker cream.
-        </p>
-      </div>
+      <section id="about" className="pt-12 pb-24">
+        <About />
+      </section>
 
-      <button className="bg-[#1C1410] text-[#FAF7F2] px-6 py-3 rounded-full">
-        Primary Button
-      </button>
+      <section id="services" className="pt-12 pb-24">
+        <Services />
+      </section>
 
-      <button className="border border-[#C8BAA6] px-6 py-3 rounded-full">
-        Secondary Button
-      </button>
+      <section id="certifications" className="py-24">
+        <Certifications />
+      </section>
+
+      <section id="qualifications" className="py-24">
+        <Qualifications />
+      </section>
+
+      <section id="projects" className="py-24">
+        <Projects />
+      </section>
+
+      <section id="blogs" className="py-24">
+        <Blogs />
+      </section>
+
+      <section id="contact" className="py-24">
+        <Contact />
+      </section>
+
     </main>
   );
 }

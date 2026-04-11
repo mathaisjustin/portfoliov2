@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Nunito, Instrument_Serif } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -28,7 +30,9 @@ export default function RootLayout({
       <body
         className={`${nunito.variable} ${instrument.variable} min-h-full antialiased`}
       >
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
