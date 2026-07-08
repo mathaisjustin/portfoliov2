@@ -71,7 +71,7 @@ export default function Hero() {
         </div>
 
           {/* RIGHT: Portrait Image */}
-          <div className="flex justify-center md:justify-end">
+          <Reveal delay={0.15} className="flex justify-center md:justify-end">
             <div className="overflow-hidden rounded-2xl">
               <img
                 src="/images/portfolio.png"
@@ -81,7 +81,7 @@ export default function Hero() {
                 className="object-cover rounded-2xl"
               />
             </div>
-          </div>
+          </Reveal>
         </div>
       </Container>
     </section>
