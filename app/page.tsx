@@ -1,5 +1,3 @@
-import Container from "@/components/layout/Container";
-
 import Hero from "@/components/sections/Hero";
 import About from "@/components/sections/About";
 import Qualifications from "@/components/sections/Qualifications";
@@ -9,37 +7,39 @@ import Certifications from "@/components/sections/Certifications";
 import Blogs from "@/components/sections/Blogs";
 import Contact from "@/components/sections/Contact";
 
+const sectionClass = "min-h-dvh flex items-center scroll-mt-32 py-20";
+
 export default function Home() {
   return (
     <main>
 
       <Hero />
 
-      <section id="about" className="pt-4 pb-24">
+      <section id="about" className={sectionClass}>
         <About />
       </section>
 
-      <section id="services" className="pt-4 pb-24">
+      <section id="services" className={sectionClass}>
         <Services />
       </section>
 
-      <section id="certifications" className="py-24">
+      <section id="certifications" className={sectionClass}>
         <Certifications />
       </section>
 
-      <section id="qualifications" className="py-24">
+      <section id="qualifications" className={sectionClass}>
         <Qualifications />
       </section>
 
-      <section id="projects" className="py-24">
+      <section id="projects" className={sectionClass}>
         <Projects />
       </section>
 
-      <section id="blogs" className="py-24">
+      <section id="blogs" className={sectionClass}>
         <Blogs />
       </section>
 
-      <section id="contact" className="py-24">
+      <section id="contact" className={sectionClass}>
         <Contact />
       </section>
 
