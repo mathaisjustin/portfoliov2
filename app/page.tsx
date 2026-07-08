@@ -7,7 +7,7 @@ import Certifications from "@/components/sections/Certifications";
 import Blogs from "@/components/sections/Blogs";
 import Contact from "@/components/sections/Contact";
 
-const sectionClass = "min-h-dvh flex items-center scroll-mt-32 py-20";
+const sectionClass = "min-h-dvh scroll-mt-32 py-16";
 
 export default function Home() {
   return (

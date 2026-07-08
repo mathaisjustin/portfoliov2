@@ -3,7 +3,7 @@ import Reveal from "@/components/animations/Reveal";
 
 export default function Hero() {
   return (
-    <section className="min-h-dvh flex flex-col justify-center pt-24 pb-12">
+    <section className="min-h-dvh pt-20 pb-12">
       <Container>
         <div className="grid md:grid-cols-2 gap-16 lg:gap-24 items-center">
 
