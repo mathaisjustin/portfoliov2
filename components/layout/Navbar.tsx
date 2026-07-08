@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from "react";
-import Container from "./Container";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -17,7 +16,7 @@ export default function Navbar() {
 
   return (
     <div className="sticky top-4 z-50">
-      <Container>
+      <div className="max-w-[1000px] mx-auto px-6">
         <header
           className={`
             transition-all duration-300
@@ -64,7 +63,7 @@ export default function Navbar() {
 
           </div>
         </header>
-      </Container>
+      </div>
     </div>
   );
 }
