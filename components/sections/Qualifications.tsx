@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Container from "@/components/layout/Container";
+import Reveal from "@/components/animations/Reveal";
 
 export default function Qualifications() {
   const [tab, setTab] = useState<"experience" | "education">("experience");
@@ -54,17 +55,23 @@ export default function Qualifications() {
     <Container>
       {/* Header */}
       <div className="mb-12 space-y-4">
-        <p className="text-sm uppercase tracking-widest">
-          Qualifications
-        </p>
+        <Reveal delay={0}>
+          <p className="text-sm uppercase tracking-widest">
+            Qualifications
+          </p>
+        </Reveal>
 
-        <h2 className="text-4xl">
-          My experience and education
-        </h2>
+        <Reveal delay={0.08}>
+          <h2 className="text-4xl">
+            My experience and education
+          </h2>
+        </Reveal>
 
-        <p className="max-w-2xl">
-          Browse my work history and academic background below.
-        </p>
+        <Reveal delay={0.16}>
+          <p className="max-w-2xl">
+            Browse my work history and academic background below.
+          </p>
+        </Reveal>
       </div>
 
       {/* Toggle */}
@@ -95,38 +102,37 @@ export default function Qualifications() {
       {/* Timeline */}
       <div className="border-t border-[#C8BAA6]">
         {data.map((item, i) => (
-          <div
-            key={i}
-            className="grid md:grid-cols-[150px_1fr] gap-6 py-6 border-b border-[#C8BAA6]"
-          >
-            {/* LEFT */}
-            <div className="space-y-2">
-              <p className="text-sm">{item.year}</p>
+          <Reveal key={`${tab}-${i}`} delay={i * 0.08}>
+            <div className="grid md:grid-cols-[150px_1fr] gap-6 py-6 border-b border-[#C8BAA6]">
+              {/* LEFT */}
+              <div className="space-y-2">
+                <p className="text-sm">{item.year}</p>
 
-              {"tag" in item && (
-                <span className="text-xs px-2 py-1 rounded-full bg-[#EDE8DF] border border-[#C8BAA6] inline-block">
-                  {item.tag}
-                </span>
-              )}
-            </div>
+                {"tag" in item && (
+                  <span className="text-xs px-2 py-1 rounded-full bg-[#EDE8DF] border border-[#C8BAA6] inline-block">
+                    {item.tag}
+                  </span>
+                )}
+              </div>
 
-            {/* RIGHT */}
-            <div className="space-y-2">
-              <h3 className="text-xl font-medium">
-                {item.role}
-              </h3>
+              {/* RIGHT */}
+              <div className="space-y-2">
+                <h3 className="text-xl font-medium">
+                  {item.role}
+                </h3>
 
-              <p className="text-sm opacity-70 italic">
-                {item.org}
-              </p>
-
-              {"desc" in item && (
-                <p className="text-sm opacity-80 max-w-xl">
-                  {item.desc}
+                <p className="text-sm opacity-70 italic">
+                  {item.org}
                 </p>
-              )}
+
+                {"desc" in item && (
+                  <p className="text-sm opacity-80 max-w-xl">
+                    {item.desc}
+                  </p>
+                )}
+              </div>
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
     </Container>

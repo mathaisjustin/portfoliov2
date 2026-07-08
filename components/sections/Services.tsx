@@ -1,4 +1,5 @@
 import Container from "@/components/layout/Container";
+import Reveal from "@/components/animations/Reveal";
 
 export default function Services() {
   return (
@@ -6,25 +7,32 @@ export default function Services() {
 
         {/* Header */}
         <div className="mb-16 space-y-4">
-          <p className="text-sm uppercase tracking-widest">
-            Services
-          </p>
+          <Reveal delay={0}>
+            <p className="text-sm uppercase tracking-widest">
+              Services
+            </p>
+          </Reveal>
 
-          <h2 className="text-4xl">
-            What I can help you with
-          </h2>
+          <Reveal delay={0.08}>
+            <h2 className="text-4xl">
+              What I can help you with
+            </h2>
+          </Reveal>
 
-          <p className="max-w-2xl">
-            I offer a range of services focused on building scalable,
-            well-designed, and high-performing digital products.
-          </p>
+          <Reveal delay={0.16}>
+            <p className="max-w-2xl">
+              I offer a range of services focused on building scalable,
+              well-designed, and high-performing digital products.
+            </p>
+          </Reveal>
         </div>
 
 {/* Services Layout */}
 <div className="grid md:grid-cols-3 gap-6 items-stretch">
 
   {/* LEFT: Featured Card */}
-<div className="md:col-span-2 p-10 rounded-2xl bg-[#1C1410] text-[#FAF7F2] flex flex-col justify-between min-h-[420px]">
+  <Reveal delay={0.1} className="md:col-span-2">
+<div className="p-10 rounded-2xl bg-[#1C1410] text-[#FAF7F2] flex flex-col justify-between min-h-[420px] h-full">
 
   <div className="space-y-6">
     <p className="text-xs uppercase tracking-widest opacity-70">
@@ -56,11 +64,13 @@ export default function Services() {
   </div>
 
 </div>
+  </Reveal>
 
   {/* RIGHT COLUMN */}
   <div className="flex flex-col gap-6">
 
     {/* Card 2 */}
+    <Reveal delay={0.2}>
     <div className="p-6 rounded-2xl border border-[#C8BAA6] space-y-4">
       <p className="text-xs uppercase tracking-widest">
         Infrastructure
@@ -80,8 +90,10 @@ export default function Services() {
         <p>— CI/CD pipelines</p>
       </div>
     </div>
+    </Reveal>
 
     {/* Card 3 */}
+    <Reveal delay={0.3}>
     <div className="p-6 rounded-2xl border border-[#C8BAA6] space-y-4">
       <p className="text-xs uppercase tracking-widest">
         eCommerce
@@ -101,6 +113,7 @@ export default function Services() {
         <p>— Admin panels</p>
       </div>
     </div>
+    </Reveal>
 
   </div>
 

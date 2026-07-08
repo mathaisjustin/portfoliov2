@@ -1,5 +1,6 @@
 import Container from "@/components/layout/Container";
 import Image from "next/image";
+import Reveal from "@/components/animations/Reveal";
 
 const projects = [
   {
@@ -42,95 +43,105 @@ export default function Projects() {
 
       {/* Header */}
       <div className="mb-16 space-y-4">
-        <p className="text-sm uppercase tracking-widest">
-          Projects
-        </p>
+        <Reveal delay={0}>
+          <p className="text-sm uppercase tracking-widest">
+            Projects
+          </p>
+        </Reveal>
 
-        <h2 className="text-4xl">
-          Selected work and case studies
-        </h2>
+        <Reveal delay={0.08}>
+          <h2 className="text-4xl">
+            Selected work and case studies
+          </h2>
+        </Reveal>
 
-        <p className="max-w-2xl">
-          A collection of projects showcasing my approach to building
-          scalable and thoughtful digital experiences.
-        </p>
+        <Reveal delay={0.16}>
+          <p className="max-w-2xl">
+            A collection of projects showcasing my approach to building
+            scalable and thoughtful digital experiences.
+          </p>
+        </Reveal>
       </div>
 
       {/* Grid */}
       <div className="grid md:grid-cols-2 gap-8">
         {projects.map((project, i) => (
-          <div
-            key={i}
-            className={`rounded-2xl border overflow-hidden ${
-              project.dark
-                ? "bg-[#1C1410] text-[#FAF7F2]"
-                : "bg-[#EDE8DF] border-[#C8BAA6]"
-            }`}
-          >
-            {/* Image */}
-            {project.image && (
-              <div className="relative w-full h-48">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            )}
+          <Reveal key={i} delay={0.1 + i * 0.1}>
+            <div
+              className={`rounded-2xl border overflow-hidden h-full ${
+                project.dark
+                  ? "bg-[#1C1410] text-[#FAF7F2]"
+                  : "bg-[#EDE8DF] border-[#C8BAA6]"
+              }`}
+            >
+              {/* Image */}
+              {project.image && (
+                <div className="relative w-full h-48">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
 
-            {/* Content */}
-            <div className="p-6 space-y-4">
-              <h3 className="text-2xl font-instrument">
-                {project.title}
-              </h3>
+              {/* Content */}
+              <div className="p-6 space-y-4">
+                <h3 className="text-2xl font-instrument">
+                  {project.title}
+                </h3>
 
-              <p className="text-sm opacity-80">
-                {project.desc}
-              </p>
+                <p className="text-sm opacity-80">
+                  {project.desc}
+                </p>
 
-              {/* Tech */}
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map((t) => (
-                  <span
-                    key={t}
-                    className={`text-xs px-3 py-1 rounded-full border ${
-                      project.dark
-                        ? "border-[#FAF7F2]/30"
-                        : "border-[#C8BAA6]"
-                    }`}
-                  >
-                    {t}
+                {/* Tech */}
+                <div className="flex flex-wrap gap-2">
+                  {project.tech.map((t) => (
+                    <span
+                      key={t}
+                      className={`text-xs px-3 py-1 rounded-full border ${
+                        project.dark
+                          ? "border-[#FAF7F2]/30"
+                          : "border-[#C8BAA6]"
+                      }`}
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                {/* CTA */}
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex items-center gap-2 text-sm pt-2"
+                >
+                  View project
+                  <span className="transition-transform group-hover:translate-x-1">
+                    →
                   </span>
-                ))}
+                </a>
               </div>
-
-              {/* CTA */}
-              <a
-                href={project.href}
-                target="_blank"
-                rel="noreferrer"
-                className="group inline-flex items-center gap-2 text-sm pt-2"
-              >
-                View project
-                <span className="transition-transform group-hover:translate-x-1">
-                  →
-                </span>
-              </a>
             </div>
-          </div>
+          </Reveal>
         ))}
       </div>
 
       {/* Bottom CTA */}
-      <div className="mt-12 flex justify-center">
-        <a
-          href="/projects"
-          className="px-6 py-3 rounded-full bg-[#1C1410] text-[#FAF7F2] hover:opacity-90 transition"
-        >
-          View all projects →
-        </a>
-      </div>
+      <Reveal delay={0.2}>
+        <div className="mt-12 flex justify-center">
+          <a
+            href="/projects"
+            className="px-6 py-3 rounded-full bg-[#1C1410] text-[#FAF7F2] hover:opacity-90 transition"
+          >
+            View all projects →
+          </a>
+        </div>
+      </Reveal>
 
     </Container>
   );

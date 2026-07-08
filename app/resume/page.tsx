@@ -1,4 +1,5 @@
 import Container from "@/components/layout/Container";
+import Reveal from "@/components/animations/Reveal";
 
 export default function ResumePage() {
   return (
@@ -6,10 +7,11 @@ export default function ResumePage() {
       <Container>
 
         {/* Header */}
-        <div className="flex items-center justify-between mb-10 max-w-4xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-medium">
-            Resume
-          </h1>
+        <Reveal delay={0}>
+          <div className="flex items-center justify-between mb-10 max-w-4xl mx-auto">
+            <h1 className="text-3xl md:text-4xl font-medium">
+              Resume
+            </h1>
 
 <a
   href="/resume.pdf"
@@ -23,22 +25,25 @@ export default function ResumePage() {
 >
   Download Resume
 </a>
-        </div>
+          </div>
+        </Reveal>
 
         {/* Clean PDF Viewer */}
-        <div className="
-          w-full max-w-4xl mx-auto
-          h-[85vh]
-          overflow-y-auto
-          overflow-x-hidden
-          bg-[#EDE8DF]/40 backdrop-blur-lg
-          shadow-[0_8px_30px_rgba(0,0,0,0.06)]
-        ">
-          <iframe
-            src="/resume.pdf#toolbar=0&navpanes=0&view=FitH"
-            className="w-full h-full border-0"
-          />
-        </div>
+        <Reveal delay={0.12}>
+          <div className="
+            w-full max-w-4xl mx-auto
+            h-[85vh]
+            overflow-y-auto
+            overflow-x-hidden
+            bg-[#EDE8DF]/40 backdrop-blur-lg
+            shadow-[0_8px_30px_rgba(0,0,0,0.06)]
+          ">
+            <iframe
+              src="/resume.pdf#toolbar=0&navpanes=0&view=FitH"
+              className="w-full h-full border-0"
+            />
+          </div>
+        </Reveal>
 
       </Container>
     </section>
