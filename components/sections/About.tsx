@@ -16,18 +16,17 @@ export default function About() {
           {/* LEFT: About Content */}
           <div className="space-y-6">
             <Reveal delay={0}>
-              <p className="text-sm uppercase tracking-widest">
-                About Me
-              </p>
+              <div className="space-y-4">
+                <p className="text-sm uppercase tracking-widest">
+                  About Me
+                </p>
+                <h2 className="text-4xl leading-tight">
+                  Full-Stack Developer and Cloud Associate from Udupi, Karnataka.
+                </h2>
+              </div>
             </Reveal>
 
-            <Reveal delay={0.08}>
-              <h2 className="text-4xl leading-tight">
-                Full-Stack Developer and Cloud Associate from Udupi, Karnataka.
-              </h2>
-            </Reveal>
-
-            <Reveal delay={0.16}>
+            <Reveal delay={0.1}>
               <p className="text-lg">
                 I build scalable applications using Next.js, React.js, Django, and
                 databases like MySQL, MongoDB and Firebase — and I&apos;m proficient in
@@ -36,7 +35,7 @@ export default function About() {
               </p>
             </Reveal>
 
-            <Reveal delay={0.24}>
+            <Reveal delay={0.18}>
               <p>
                 I&apos;ve completed professional work as a Cloud Associate at Niveus
                 Solutions and as a Full Stack Development Intern at Locale Homestays and
@@ -47,7 +46,7 @@ export default function About() {
             </Reveal>
 
             {/* CTA */}
-            <Reveal delay={0.32}>
+            <Reveal delay={0.26}>
               <a
                 href="#qualifications"
                 className="group inline-flex items-center gap-2 pt-6 text-sm border-b border-[#C8BAA6] hover:border-[#1C1410] transition"
@@ -61,7 +60,7 @@ export default function About() {
           {/* RIGHT: Skills */}
           <div className="space-y-8">
             {skillGroups.map((group, i) => (
-              <Reveal key={group.title} delay={0.1 + i * 0.1}>
+              <Reveal key={group.title} delay={0.05 + i * 0.08}>
                 <div className="space-y-3">
                   <p className="text-sm uppercase tracking-widest">{group.title}</p>
                   <div className="flex flex-wrap gap-2">
