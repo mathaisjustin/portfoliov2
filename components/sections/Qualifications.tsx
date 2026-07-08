@@ -103,7 +103,7 @@ export default function Qualifications() {
       <div className="border-t border-[#C8BAA6]">
         {data.map((item, i) => (
           <Reveal key={`${tab}-${i}`} delay={i * 0.08}>
-            <div className="grid md:grid-cols-[150px_1fr] gap-6 py-6 border-b border-[#C8BAA6]">
+            <div className="grid md:grid-cols-[180px_1fr] gap-6 py-6 border-b border-[#C8BAA6]">
               {/* LEFT */}
               <div className="space-y-2">
                 <p className="text-sm">{item.year}</p>
@@ -126,7 +126,7 @@ export default function Qualifications() {
                 </p>
 
                 {"desc" in item && (
-                  <p className="text-sm opacity-80 max-w-xl">
+                  <p className="text-sm opacity-80 max-w-3xl">
                     {item.desc}
                   </p>
                 )}
