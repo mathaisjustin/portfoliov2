@@ -18,16 +18,17 @@ export default function Hero() {
 
             <Reveal delay={0.1}>
               <p className="text-lg max-w-xl leading-relaxed text-[#5C4A36]">
-                A developer focused on building thoughtful and scalable digital experiences.
-              Through working on real-world projects, I’ve learned to think beyond just writing code,
-              focusing on solving problems, collaborating effectively, and creating systems that last.
+                A Full-Stack Developer and Cloud Associate skilled in building scalable
+                applications with Next.js, React and Django, and deploying cloud-native
+                solutions on Google Cloud Platform.
               </p>
             </Reveal>
 
             <Reveal delay={0.2}>
               <p className="text-lg max-w-xl leading-relaxed text-[#5C4A36]">
-                My journey has helped me become a better team player, communicate ideas clearly, and approach
-                challenges with a structured and practical mindset.
+                I&apos;ve worked as a Cloud Associate at Niveus Solutions and a Full Stack
+                Developer Intern at Locale Homestays, and I&apos;m currently pursuing my
+                MCA while exploring emerging technologies.
               </p>
             </Reveal>
 

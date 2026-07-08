@@ -37,13 +37,20 @@ export default function Navbar() {
 
             <nav className="flex items-center gap-8 text-base text-[#5C4A36]">
 
-              {["About","Education","Services","Projects","Certifications","Blogs"].map((item) => (
+              {[
+                { label: "About", href: "#about" },
+                { label: "Education", href: "#qualifications" },
+                { label: "Services", href: "#services" },
+                { label: "Projects", href: "#projects" },
+                { label: "Achievements", href: "#certifications" },
+                { label: "Blogs", href: "#blogs" },
+              ].map((item) => (
                 <a
-                  key={item}
-                  href={`#${item.toLowerCase()}`}
+                  key={item.label}
+                  href={item.href}
                   className="relative group"
                 >
-                  {item}
+                  {item.label}
                   <span className="
                     absolute left-0 -bottom-1 h-[1px] w-0
                     bg-[#5C4A36]

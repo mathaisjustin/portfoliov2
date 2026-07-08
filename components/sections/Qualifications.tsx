@@ -8,43 +8,43 @@ export default function Qualifications() {
 
   const experience = [
     {
-      year: "2024 — Present",
-      role: "Senior Full Stack Developer",
-      org: "Stripe, Remote",
-      desc: "Leading frontend architecture for dashboard systems. Improved performance and migrated legacy codebases.",
+      year: "Oct 2025 — Dec 2025",
+      role: "Full Stack Development Intern",
+      org: "Locale Homestays, Remote / OCI",
+      desc: "Built the frontend with Next.js focused on mobile responsiveness, designed backend REST APIs with Node.js and Express integrated with Supabase, managed Oracle Cloud Infrastructure hosting, and built CI/CD pipelines for automated deployments.",
     },
     {
-      year: "2022 — 2024",
-      role: "Full Stack Developer",
-      org: "Shopify, London",
-      desc: "Built merchant-facing features and handled API integrations using Node.js and PostgreSQL.",
+      year: "June 2023 — Mar 2024",
+      role: "Cloud Associate",
+      org: "Niveus Solutions, Udupi, Karnataka",
+      desc: "Assisted in designing and deploying solutions on Google Cloud Platform (Compute Engine, Cloud Storage, IAM), automated cloud workflows, and developed a solid understanding of cloud-native architecture and CI/CD best practices.",
     },
     {
-      year: "2021 — 2022",
-      role: "Junior Developer",
-      org: "Agency X, Manchester",
-      desc: "Delivered client websites and gained exposure to CI/CD and cloud deployments.",
+      year: "Oct 2022 — Mar 2023",
+      role: "Web Developer Intern / Co-Developer",
+      org: "Youace (Startup Project), Mangaluru",
+      desc: "Designed and developed the Youace website from scratch using Next.js, implemented key features, and optimized frontend performance as part of a BCA startup initiative.",
     },
   ];
 
   const education = [
     {
-      year: "2023",
-      role: "AWS Solutions Architect",
-      org: "Amazon Web Services",
-      tag: "Certification",
-    },
-    {
-      year: "2021 — 2022",
-      role: "MSc Advanced Computer Science",
-      org: "University of Edinburgh",
+      year: "Aug 2024 — Present",
+      role: "Masters in Computer Application (MCA)",
+      org: "St Aloysius Deemed to be University AIMIT, Mangaluru",
       tag: "Masters",
     },
     {
-      year: "2017 — 2021",
-      role: "BSc Computer Science",
-      org: "University of Manchester",
+      year: "Aug 2020 — May 2023",
+      role: "Bachelors in Computer Application (BCA)",
+      org: "St Aloysius College (Autonomous), Mangaluru — CGPA 7.34",
       tag: "Degree",
+    },
+    {
+      year: "2018 — 2020",
+      role: "Pre-University Science",
+      org: "St Mary's College, Shirva — 62%",
+      tag: "PUC",
     },
   ];
 

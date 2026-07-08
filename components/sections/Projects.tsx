@@ -3,31 +3,35 @@ import Image from "next/image";
 
 const projects = [
   {
-    title: "DevFlow",
-    desc: "A real-time CI/CD monitoring dashboard that unifies pipeline data and alerts across teams.",
-    tech: ["Next.js", "Node.js", "PostgreSQL", "WebSockets", "Docker"],
-    image: "/projects/devflow.png",
+    title: "SmartPark",
+    desc: "A smart parking management system with real-time space monitoring using a computer vision model. Won 1st place at Impetus Innovative Project, scoring 481/500 and securing funding.",
+    tech: ["Django", "Firebase", "MongoDB", "CVzone"],
+    image: "/projects/smartpark.png",
+    href: "https://github.com/mathaisjustin/smartPark",
     dark: false,
   },
   {
-    title: "AuthKit",
-    desc: "Production-ready OAuth2 microservice with JWT rotation and multi-tenant support.",
-    tech: ["Node.js", "Redis", "PostgreSQL", "Express"],
-    image: "/projects/authkit.png",
+    title: "Jewels Store",
+    desc: "A full-fledged jewelry eCommerce website with product search, filtering, cart, and secure Razorpay payments, plus an admin panel for products, orders and users.",
+    tech: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+    image: "/projects/jdm.png",
+    href: "https://github.com/mathaisjustin/Jewels-Store",
     dark: true,
   },
   {
-    title: "QueryBolt",
-    desc: "SQL query builder with explain plans, indexing insights, and visual query analysis.",
-    tech: ["TypeScript", "PostgreSQL", "React"],
-    image: "/projects/querybolt.png",
+    title: "Youace Website",
+    desc: "A responsive, user-centric landing page for a personal development platform, emphasizing accessibility and cross-device compatibility.",
+    tech: ["Next.js", "Responsive Design"],
+    image: "/projects/youace.png",
+    href: "https://github.com/mathaisjustin/Youace-landing",
     dark: false,
   },
   {
-    title: "LaunchKit",
-    desc: "Infrastructure-as-code starter for AWS using Terraform for scalable deployments.",
-    tech: ["Terraform", "AWS", "Docker", "GitHub Actions"],
-    image: "/projects/launchkit.png",
+    title: "Personal Homelab Infrastructure",
+    desc: "A homelab environment with multiple virtual machines, Docker containers, and Kubernetes orchestration — used for CI, hosting dev environments, and experimenting with cloud-native technologies.",
+    tech: ["Docker", "Kubernetes", "Virtual Machines"],
+    image: undefined,
+    href: "https://github.com/mathaisjustin",
     dark: false,
   },
 ];
@@ -35,7 +39,7 @@ const projects = [
 export default function Projects() {
   return (
     <Container>
-      
+
       {/* Header */}
       <div className="mb-16 space-y-4">
         <p className="text-sm uppercase tracking-widest">
@@ -103,7 +107,9 @@ export default function Projects() {
 
               {/* CTA */}
               <a
-                href="#"
+                href={project.href}
+                target="_blank"
+                rel="noreferrer"
                 className="group inline-flex items-center gap-2 text-sm pt-2"
               >
                 View project
@@ -118,9 +124,12 @@ export default function Projects() {
 
       {/* Bottom CTA */}
       <div className="mt-12 flex justify-center">
-        <button className="px-6 py-3 rounded-full bg-[#1C1410] text-[#FAF7F2]">
+        <a
+          href="/projects"
+          className="px-6 py-3 rounded-full bg-[#1C1410] text-[#FAF7F2] hover:opacity-90 transition"
+        >
           View all projects →
-        </button>
+        </a>
       </div>
 
     </Container>

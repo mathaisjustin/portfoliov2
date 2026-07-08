@@ -4,7 +4,7 @@ export default function About() {
   return (
       <Container>
         <div className="grid md:grid-cols-2 gap-16 items-start">
-          
+
           {/* LEFT: About Content */}
           <div className="space-y-6">
             <p className="text-sm uppercase tracking-widest">
@@ -12,19 +12,22 @@ export default function About() {
             </p>
 
             <h2 className="text-4xl leading-tight">
-              A developer focused on building meaningful digital experiences.
+              Full-Stack Developer and Cloud Associate from Udupi, Karnataka.
             </h2>
 
             <p className="text-lg">
-              I enjoy working at the intersection of design and engineering,
-              creating applications that are not only functional but also
-              intuitive and thoughtfully crafted.
+              I build scalable applications using Next.js, React.js, Django, and
+              databases like MySQL, MongoDB and Firebase — and I&apos;m proficient in
+              deploying and managing cloud-native solutions on Google Cloud Platform,
+              implementing CI/CD workflows, and optimizing backend performance.
             </p>
 
             <p>
-              My work revolves around building scalable systems, clean user
-              interfaces, and continuously improving how users interact with
-              digital products.
+              I&apos;ve completed professional work as a Cloud Associate at Niveus
+              Solutions and as a Full Stack Development Intern at Locale Homestays and
+              Youace, contributing to production-ready web applications. I&apos;m currently
+              pursuing my MCA with a passion for delivering innovative, high-performance
+              solutions and continuously exploring emerging technologies.
             </p>
 
             {/* CTA */}
@@ -40,11 +43,11 @@ export default function About() {
           {/* RIGHT: Skills */}
 <div className="space-y-8">
 
-  {/* Frontend */}
+  {/* Programming */}
   <div className="space-y-3">
-    <p className="text-sm uppercase tracking-widest">Frontend</p>
+    <p className="text-sm uppercase tracking-widest">Programming</p>
     <div className="flex flex-wrap gap-2">
-      {["React", "Next.js", "TypeScript", "Tailwind"].map((tech) => (
+      {["Python", "JavaScript", "TypeScript"].map((tech) => (
         <span
           key={tech}
           className="px-3 py-1 rounded-full border border-[#C8BAA6] text-sm"
@@ -55,11 +58,11 @@ export default function About() {
     </div>
   </div>
 
-  {/* Backend */}
+  {/* Web Development */}
   <div className="space-y-3">
-    <p className="text-sm uppercase tracking-widest">Backend</p>
+    <p className="text-sm uppercase tracking-widest">Web Development</p>
     <div className="flex flex-wrap gap-2">
-      {["Node.js", "GraphQL", "REST", "WebSockets"].map((tech) => (
+      {["Next.js", "React.js", "Node.js", "Django"].map((tech) => (
         <span
           key={tech}
           className="px-3 py-1 rounded-full border border-[#C8BAA6] text-sm"
@@ -74,7 +77,7 @@ export default function About() {
   <div className="space-y-3">
     <p className="text-sm uppercase tracking-widest">Databases</p>
     <div className="flex flex-wrap gap-2">
-      {["PostgreSQL", "Redis", "MongoDB"].map((tech) => (
+      {["MongoDB", "MySQL", "Firebase", "PostgreSQL"].map((tech) => (
         <span
           key={tech}
           className="px-3 py-1 rounded-full border border-[#C8BAA6] text-sm"
@@ -85,11 +88,11 @@ export default function About() {
     </div>
   </div>
 
-  {/* DevOps */}
+  {/* DevOps & Cloud */}
   <div className="space-y-3">
-    <p className="text-sm uppercase tracking-widest">DevOps</p>
+    <p className="text-sm uppercase tracking-widest">DevOps & Cloud</p>
     <div className="flex flex-wrap gap-2">
-      {["Docker", "AWS", "Kubernetes", "Terraform"].map((tech) => (
+      {["Docker", "Kubernetes", "CI/CD", "AWS", "Google Cloud", "GitHub Actions"].map((tech) => (
         <span
           key={tech}
           className="px-3 py-1 rounded-full border border-[#C8BAA6] text-sm"

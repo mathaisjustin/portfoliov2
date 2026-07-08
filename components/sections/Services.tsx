@@ -3,7 +3,7 @@ import Container from "@/components/layout/Container";
 export default function Services() {
   return (
       <Container>
-        
+
         {/* Header */}
         <div className="mb-16 space-y-4">
           <p className="text-sm uppercase tracking-widest">
@@ -36,20 +36,21 @@ export default function Services() {
 </h3>
 
     <p className="text-sm opacity-80 max-w-lg">
-      I build complete, production-ready applications — from frontend to backend — 
-      designed to scale, perform efficiently, and deliver a seamless user experience.
+      I build complete, production-ready applications using Next.js, React,
+      Node.js and Django — designed to scale, perform efficiently, and
+      deliver a seamless user experience.
     </p>
 
     <p className="text-sm opacity-70 max-w-lg">
-      From idea to deployment, I focus on creating systems that are reliable, maintainable, 
-      and built with real-world usage in mind.
+      From idea to deployment, I focus on creating systems that are reliable,
+      maintainable, and built with real-world usage in mind.
     </p>
   </div>
 
   <div className="mt-8 space-y-2 text-sm opacity-70">
     <p>— Frontend (React / Next.js)</p>
-    <p>— Backend APIs & database design</p>
-    <p>— Authentication & integrations</p>
+    <p>— Backend APIs with Node.js & Django</p>
+    <p>— Database design (MySQL, MongoDB, Firebase)</p>
     <p>— Cloud deployment & hosting</p>
     <p>— Performance optimization</p>
   </div>
@@ -66,16 +67,16 @@ export default function Services() {
       </p>
 
       <h3 className="text-xl">
-        DevOps & Cloud Hosting
+        Cloud & DevOps
       </h3>
 
       <p className="text-sm opacity-80">
-        Your infrastructure, simplified and scalable.
+        Cloud-native infrastructure on Google Cloud Platform and AWS.
       </p>
 
       <div className="text-sm opacity-70 space-y-1">
-        <p>— AWS / VPS setup</p>
-        <p>— Docker containers</p>
+        <p>— GCP / AWS setup</p>
+        <p>— Docker & Kubernetes</p>
         <p>— CI/CD pipelines</p>
       </div>
     </div>
@@ -83,21 +84,21 @@ export default function Services() {
     {/* Card 3 */}
     <div className="p-6 rounded-2xl border border-[#C8BAA6] space-y-4">
       <p className="text-xs uppercase tracking-widest">
-        Entry Level
+        eCommerce
       </p>
 
       <h3 className="text-xl">
-        Static Sites & Landing Pages
+        Online Stores & Integrations
       </h3>
 
       <p className="text-sm opacity-80">
-        Fast, clean, and responsive websites.
+        Secure payments and admin tooling for online businesses.
       </p>
 
       <div className="text-sm opacity-70 space-y-1">
-        <p>— Custom UI design</p>
-        <p>— Responsive layout</p>
-        <p>— Animations & polish</p>
+        <p>— Razorpay payment integration</p>
+        <p>— Product & order management</p>
+        <p>— Admin panels</p>
       </div>
     </div>
 

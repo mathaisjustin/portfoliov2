@@ -4,31 +4,43 @@ import Image from "next/image";
 
 const projects = [
   {
-    title: "DevFlow",
-    desc: "A real-time CI/CD monitoring dashboard that unifies pipeline data and alerts across teams.",
-    tech: ["Next.js", "Node.js", "PostgreSQL", "WebSockets", "Docker"],
-    image: "/projects/devflow.png",
+    title: "SmartPark",
+    desc: "A smart parking management system built with Django, Firebase and MongoDB, with real-time parking space monitoring using a computer vision model (CVzone) for automated detection. Won 1st place at Impetus Innovative Project, scoring 481/500 and securing funding.",
+    tech: ["Django", "Firebase", "MongoDB", "CVzone"],
+    image: "/projects/smartpark.png",
+    href: "https://github.com/mathaisjustin/smartPark",
     dark: false,
   },
   {
-    title: "AuthKit",
-    desc: "Production-ready OAuth2 microservice with JWT rotation and multi-tenant support.",
-    tech: ["Node.js", "Redis", "PostgreSQL", "Express"],
-    image: "/projects/authkit.png",
+    title: "Jewels Store",
+    desc: "A full-fledged jewelry eCommerce website built with PHP, MySQL, HTML, CSS and JavaScript. Implemented product search, filtering, cart, and secure payments with Razorpay, plus an admin panel for product, order and user management.",
+    tech: ["PHP", "MySQL", "HTML", "CSS", "JavaScript", "Razorpay"],
+    image: "/projects/jdm.png",
+    href: "https://github.com/mathaisjustin/Jewels-Store",
     dark: true,
   },
   {
-    title: "QueryBolt",
-    desc: "SQL query builder with explain plans, indexing insights, and visual query analysis.",
-    tech: ["TypeScript", "PostgreSQL", "React"],
-    image: "/projects/querybolt.png",
+    title: "Youace Website",
+    desc: "Designed and developed a responsive, user-centric landing page for a personal development platform, emphasizing accessibility and seamless user experience with contemporary front-end design principles.",
+    tech: ["Next.js", "Responsive Design"],
+    image: "/projects/youace.png",
+    href: "https://github.com/mathaisjustin/Youace-landing",
     dark: false,
   },
   {
-    title: "LaunchKit",
-    desc: "Infrastructure-as-code starter for AWS using Terraform for scalable deployments.",
-    tech: ["Terraform", "AWS", "Docker", "GitHub Actions"],
-    image: "/projects/launchkit.png",
+    title: "Personal Homelab Infrastructure",
+    desc: "Designed and deployed a homelab environment with multiple virtual machines, Docker containers, and Kubernetes orchestration. Implemented network management, firewall rules, and automated backups for development, testing, and CI.",
+    tech: ["Docker", "Kubernetes", "Virtual Machines", "Networking"],
+    image: undefined,
+    href: "https://github.com/mathaisjustin",
+    dark: false,
+  },
+  {
+    title: "Personal Portfolio Website",
+    desc: "Built a responsive personal portfolio using Next.js and Tailwind CSS to showcase projects and work experience, deployed and optimized for performance and SEO best practices.",
+    tech: ["Next.js", "Tailwind CSS"],
+    image: undefined,
+    href: "https://github.com/mathaisjustin",
     dark: false,
   },
 ];
@@ -63,21 +75,23 @@ export default function ProjectsPage() {
         {projects.map((project, i) => (
           <Reveal key={i} delay={0.2 + i * 0.06}>
             <div
-              className={`rounded-2xl border overflow-hidden ${
+              className={`rounded-2xl border overflow-hidden h-full ${
                 project.dark
                   ? "bg-[#1C1410] text-[#FAF7F2]"
                   : "bg-[#EDE8DF] border-[#C8BAA6]"
               }`}
             >
               {/* Image */}
-              <div className="relative w-full h-56">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                />
-              </div>
+              {project.image && (
+                <div className="relative w-full h-56">
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              )}
 
               {/* Content */}
               <div className="p-6 space-y-4">
@@ -103,6 +117,18 @@ export default function ProjectsPage() {
                     </span>
                   ))}
                 </div>
+
+                <a
+                  href={project.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex items-center gap-2 text-sm pt-2"
+                >
+                  View on GitHub
+                  <span className="transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
+                </a>
               </div>
             </div>
           </Reveal>
