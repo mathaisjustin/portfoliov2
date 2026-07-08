@@ -1,12 +1,6 @@
 import Container from "@/components/layout/Container";
 import Reveal from "@/components/animations/Reveal";
 
-const highlights = [
-  { value: "5", label: "Projects shipped" },
-  { value: "3", label: "Organizations" },
-  { value: "1st", label: "Place — Impetus 2023" },
-];
-
 export default function Hero() {
   return (
     <section className="pt-32 pb-16">
@@ -18,7 +12,9 @@ export default function Hero() {
 
             <Reveal delay={0}>
               <h1 className="text-5xl md:text-7xl leading-[1.1] tracking-tight max-w-xl">
-                Hello, I’m Justin
+                Hello, I’m
+                <br />
+                Justin Mathais
               </h1>
             </Reveal>
 
@@ -33,30 +29,18 @@ export default function Hero() {
 
             <Reveal delay={0.2}>
               <p className="text-lg max-w-2xl leading-relaxed text-[#5C4A36]">
-                I&apos;ve worked as a Cloud Associate at Niveus Solutions, a Full Stack
-                Development Intern at Locale Homestays, and a Web Developer Intern at
-                Youace — and I&apos;m currently pursuing my MCA at St Aloysius (Deemed
-                to be University) while continuing to explore emerging technologies.
+                With hands-on experience across cloud infrastructure and full-stack web
+                development, I enjoy turning ideas into fast, reliable products — from
+                backend APIs to pixel-perfect interfaces. I&apos;m currently pursuing my
+                Master&apos;s in Computer Applications, always exploring new tools and
+                technologies along the way.
               </p>
-            </Reveal>
-
-            <Reveal delay={0.28}>
-              <div className="flex flex-wrap gap-x-10 gap-y-4 pt-2">
-                {highlights.map((item) => (
-                  <div key={item.label}>
-                    <p className="font-instrument text-3xl text-[#1C1410]">{item.value}</p>
-                    <p className="text-xs uppercase tracking-widest text-[#5C4A36]">
-                      {item.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
             </Reveal>
 
             <div className="flex gap-4 pt-6">
 
               {/* Primary → Resume */}
-              <Reveal delay={0.34} className="inline-flex">
+              <Reveal delay={0.3} className="inline-flex">
                 <a
                   href="/resume"
                   className="
