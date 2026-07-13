@@ -77,13 +77,13 @@ export default function Hero() {
 
           {/* RIGHT: Portrait Image */}
           <Reveal delay={0.15} className="flex justify-center md:justify-end">
-            <div className="overflow-hidden rounded-2xl">
+            <div className="overflow-hidden rounded-2xl w-full max-w-[420px]">
               <img
                 src="/images/portfolio.png"
                 alt="Justin Mathais"
-                width={350} // adjust based on your image
-                height={500} // maintain aspect ratio
-                className="object-cover rounded-2xl"
+                width={420} // adjust based on your image
+                height={600} // maintain aspect ratio
+                className="object-cover rounded-2xl w-full h-auto"
               />
             </div>
           </Reveal>
