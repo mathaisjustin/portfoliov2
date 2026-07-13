@@ -25,16 +25,9 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
   return (
     <div className="sticky top-4 z-50">
-      <div className="max-w-[1000px] mx-auto px-6">
+      <div className="max-w-[1000px] mx-auto px-6 relative">
         <header
           className={`
             transition-all duration-300
@@ -71,63 +64,67 @@ export default function Navbar() {
               ))}
             </nav>
 
-            {/* Mobile hamburger */}
+            {/* Mobile hamburger / close toggle */}
             <button
               type="button"
-              onClick={() => setOpen(true)}
-              aria-label="Open menu"
+              onClick={() => setOpen((v) => !v)}
+              aria-label={open ? "Close menu" : "Open menu"}
+              aria-expanded={open}
               className="md:hidden p-2 -mr-2 text-[#1C1410]"
             >
-              <Menu size={24} />
+              {open ? <X size={24} /> : <Menu size={24} />}
             </button>
 
           </div>
         </header>
+
+        {/* Mobile dropdown popup — a small card under the navbar, not a
+            full-screen takeover. Always mounted; visibility driven by
+            plain CSS transitions on `open`. */}
+        <div
+          aria-hidden={!open}
+          className={`
+            md:hidden absolute left-0 right-0 top-full mt-3 z-[60]
+            origin-top rounded-2xl border border-[#C8BAA6]/50
+            bg-[#FAF7F2]/95 backdrop-blur-lg
+            shadow-[0_16px_40px_rgba(0,0,0,0.12)]
+            overflow-hidden
+            transition-all duration-250 ease-out
+            ${open ? "opacity-100 scale-100 pointer-events-auto" : "opacity-0 scale-95 pointer-events-none"}
+          `}
+        >
+          <nav className="flex flex-col p-3">
+            {navLinks.map((item, i) => (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                tabIndex={open ? 0 : -1}
+                style={{ transitionDelay: open ? `${i * 30}ms` : "0ms" }}
+                className={`
+                  text-lg text-[#1C1410] px-4 py-3 rounded-xl
+                  hover:bg-[#EDE8DF]
+                  transition-all duration-200 ease-out
+                  ${open ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"}
+                `}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+        </div>
       </div>
 
-      {/* Mobile menu overlay — always mounted; visibility driven by plain CSS
-          transitions on `open` (not framer-motion / AnimatePresence) so it
-          never gets stuck invisible-but-blocking after closing. */}
+      {/* Backdrop — dims the page and closes the popup on tap outside */}
       <div
-        aria-hidden={!open}
+        aria-hidden="true"
+        onClick={() => setOpen(false)}
         className={`
-          fixed inset-0 z-[60] bg-[#FAF7F2] md:hidden flex flex-col
-          transition-opacity duration-300 ease-out
+          md:hidden fixed inset-0 z-[55] bg-[#1C1410]/20
+          transition-opacity duration-250 ease-out
           ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
         `}
-      >
-        <div className="max-w-[1000px] w-full mx-auto px-6 pt-6 flex items-center justify-between">
-          <div className="text-lg font-medium">Justin Mathais</div>
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            aria-label="Close menu"
-            tabIndex={open ? 0 : -1}
-            className="p-2 -mr-2 text-[#1C1410]"
-          >
-            <X size={26} />
-          </button>
-        </div>
-
-        <nav className="flex-1 flex flex-col items-start justify-center gap-2 px-8">
-          {navLinks.map((item, i) => (
-            <a
-              key={item.label}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              tabIndex={open ? 0 : -1}
-              style={{ transitionDelay: open ? `${50 + i * 60}ms` : "0ms" }}
-              className={`
-                text-4xl leading-tight text-[#1C1410] py-2
-                transition-all duration-400 ease-out
-                ${open ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}
-              `}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-      </div>
+      />
     </div>
   );
 }
