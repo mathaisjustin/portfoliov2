@@ -84,7 +84,7 @@ export default function Navbar() {
         <div
           aria-hidden={!open}
           className={`
-            md:hidden absolute left-0 right-0 top-full mt-3 z-[60]
+            md:hidden absolute left-6 right-6 top-full mt-3 z-[60]
             origin-top rounded-2xl border border-[#C8BAA6]/50
             bg-[#FAF7F2]/95 backdrop-blur-lg
             shadow-[0_16px_40px_rgba(0,0,0,0.12)]
