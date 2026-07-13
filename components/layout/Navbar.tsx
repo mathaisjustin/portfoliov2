@@ -41,9 +41,17 @@ export default function Navbar() {
         >
           <div className="px-6 py-4 flex items-center justify-between">
 
-            <div className="text-lg font-medium">
+            <a
+              href="#top"
+              onClick={(e) => {
+                e.preventDefault();
+                setOpen(false);
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="text-lg font-medium hover:opacity-70 transition-opacity"
+            >
               Justin Mathais
-            </div>
+            </a>
 
             {/* Desktop nav */}
             <nav className="hidden md:flex items-center gap-8 text-base text-[#5C4A36]">
