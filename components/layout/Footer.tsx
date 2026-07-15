@@ -1,24 +1,27 @@
 import Container from "./Container";
+import Reveal from "@/components/animations/Reveal";
 
 export default function Footer() {
   return (
     <footer className="w-full border-t border-[#C8BAA6] mt-24">
       <Container>
-        <div className="py-10 flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
-          
-          <p>© {new Date().getFullYear()} Justin Mathais</p>
+        <Reveal>
+          <div className="py-10 flex flex-col md:flex-row items-center justify-between gap-6 text-sm">
 
-          <p className="text-center">
-            Built with care and intention.
-          </p>
+            <p>© {new Date().getFullYear()} Justin Mathais</p>
 
-          <div className="flex items-center gap-6">
-            <a href="#">GitHub</a>
-            <a href="#">LinkedIn</a>
-            <a href="#">Email</a>
+            <p className="text-center">
+              Built with care and intention.
+            </p>
+
+            <div className="flex items-center gap-6">
+              <a href="https://github.com/mathaisjustin" target="_blank" rel="noreferrer">GitHub</a>
+              <a href="https://www.linkedin.com/in/mathaisjustin/" target="_blank" rel="noreferrer">LinkedIn</a>
+              <a href="mailto:mathaisjustin@gmail.com">Email</a>
+            </div>
+
           </div>
-
-        </div>
+        </Reveal>
       </Container>
     </footer>
   );

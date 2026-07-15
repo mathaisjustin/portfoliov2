@@ -1,11 +1,11 @@
 import Container from "@/components/layout/Container";
-import Image from "next/image";
 import Reveal from "@/components/animations/Reveal";
+import Image from "next/image";
 
 const projects = [
   {
     title: "SmartPark",
-    desc: "A smart parking management system with real-time space monitoring using a computer vision model. Won 1st place at Impetus Innovative Project, scoring 481/500 and securing funding.",
+    desc: "A smart parking management system built with Django, Firebase and MongoDB, with real-time parking space monitoring using a computer vision model (CVzone) for automated detection. Won 1st place at Impetus Innovative Project, scoring 481/500 and securing funding.",
     tech: ["Django", "Firebase", "MongoDB", "CVzone"],
     image: "/projects/smartpark.png",
     href: "https://github.com/mathaisjustin/smartPark",
@@ -13,15 +13,15 @@ const projects = [
   },
   {
     title: "Jewels Store",
-    desc: "A full-fledged jewelry eCommerce website with product search, filtering, cart, and secure Razorpay payments, plus an admin panel for products, orders and users.",
-    tech: ["PHP", "MySQL", "HTML", "CSS", "JavaScript"],
+    desc: "A full-fledged jewelry eCommerce website built with PHP, MySQL, HTML, CSS and JavaScript. Implemented product search, filtering, cart, and secure payments with Razorpay, plus an admin panel for product, order and user management.",
+    tech: ["PHP", "MySQL", "HTML", "CSS", "JavaScript", "Razorpay"],
     image: "/projects/jdm.png",
     href: "https://github.com/mathaisjustin/Jewels-Store",
     dark: true,
   },
   {
     title: "Youace Website",
-    desc: "A responsive, user-centric landing page for a personal development platform, emphasizing accessibility and cross-device compatibility.",
+    desc: "Designed and developed a responsive, user-centric landing page for a personal development platform, emphasizing accessibility and seamless user experience with contemporary front-end design principles.",
     tech: ["Next.js", "Responsive Design"],
     image: "/projects/youace.png",
     href: "https://github.com/mathaisjustin/Youace-landing",
@@ -29,17 +29,25 @@ const projects = [
   },
   {
     title: "Personal Homelab Infrastructure",
-    desc: "A homelab environment with multiple virtual machines, Docker containers, and Kubernetes orchestration — used for CI, hosting dev environments, and experimenting with cloud-native technologies.",
-    tech: ["Docker", "Kubernetes", "Virtual Machines"],
+    desc: "Designed and deployed a homelab environment with multiple virtual machines, Docker containers, and Kubernetes orchestration. Implemented network management, firewall rules, and automated backups for development, testing, and CI.",
+    tech: ["Docker", "Kubernetes", "Virtual Machines", "Networking"],
+    image: undefined,
+    href: "https://github.com/mathaisjustin",
+    dark: false,
+  },
+  {
+    title: "Personal Portfolio Website",
+    desc: "Built a responsive personal portfolio using Next.js and Tailwind CSS to showcase projects and work experience, deployed and optimized for performance and SEO best practices.",
+    tech: ["Next.js", "Tailwind CSS"],
     image: undefined,
     href: "https://github.com/mathaisjustin",
     dark: false,
   },
 ];
 
-export default function Projects() {
+export default function ProjectsPage() {
   return (
-    <Container>
+    <Container className="pt-12 pb-16">
 
       {/* Header */}
       <div className="mb-16 space-y-4">
@@ -50,15 +58,14 @@ export default function Projects() {
         </Reveal>
 
         <Reveal delay={0.08}>
-          <h2 className="text-4xl">
-            Selected work and case studies
-          </h2>
+          <h1 className="text-4xl md:text-5xl leading-tight font-instrument">
+            All projects
+          </h1>
         </Reveal>
 
         <Reveal delay={0.16}>
           <p className="max-w-2xl">
-            A collection of projects showcasing my approach to building
-            scalable and thoughtful digital experiences.
+            A deeper look into the projects I’ve built and the systems behind them.
           </p>
         </Reveal>
       </div>
@@ -66,7 +73,7 @@ export default function Projects() {
       {/* Grid */}
       <div className="grid md:grid-cols-2 gap-8">
         {projects.map((project, i) => (
-          <Reveal key={i} delay={0.1 + i * 0.1}>
+          <Reveal key={i} delay={0.2 + i * 0.06}>
             <div
               className={`rounded-2xl border overflow-hidden h-full ${
                 project.dark
@@ -76,12 +83,11 @@ export default function Projects() {
             >
               {/* Image */}
               {project.image && (
-                <div className="relative w-full h-48">
+                <div className="relative w-full h-56">
                   <Image
                     src={project.image}
                     alt={project.title}
                     fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover"
                   />
                 </div>
@@ -97,7 +103,6 @@ export default function Projects() {
                   {project.desc}
                 </p>
 
-                {/* Tech */}
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((t) => (
                     <span
@@ -113,14 +118,13 @@ export default function Projects() {
                   ))}
                 </div>
 
-                {/* CTA */}
                 <a
                   href={project.href}
                   target="_blank"
                   rel="noreferrer"
                   className="group inline-flex items-center gap-2 text-sm pt-2"
                 >
-                  View project
+                  View on GitHub
                   <span className="transition-transform group-hover:translate-x-1">
                     →
                   </span>
@@ -130,18 +134,6 @@ export default function Projects() {
           </Reveal>
         ))}
       </div>
-
-      {/* Bottom CTA */}
-      <Reveal delay={0.2}>
-        <div className="mt-12 flex justify-center">
-          <a
-            href="/projects"
-            className="px-6 py-3 rounded-full bg-[#1C1410] text-[#FAF7F2] hover:opacity-90 transition"
-          >
-            View all projects →
-          </a>
-        </div>
-      </Reveal>
 
     </Container>
   );

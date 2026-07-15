@@ -30,9 +30,18 @@ export default function RootLayout({
       <body
         className={`${nunito.variable} ${instrument.variable} min-h-full antialiased`}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        {/* 🌫️ Background Layer (IMPORTANT for glass effect) */}
+        <div className="min-h-screen bg-gradient-to-b from-[#FAF7F2] via-[#F3EFE8] to-[#FAF7F2]">
+
+          <Navbar />
+
+          <main>
+            {children}
+          </main>
+
+          <Footer />
+
+        </div>
       </body>
     </html>
   );
