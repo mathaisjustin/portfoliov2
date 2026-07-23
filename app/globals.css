@@ -21,3 +21,13 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-instrument) !important;
   color: var(--color-heading) !important;
 }
+
+/* ===== TECH STACK CAROUSEL ===== */
+@keyframes tech-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.animate-tech-scroll {
+  animation: tech-scroll 38s linear infinite;
+}
