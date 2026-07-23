@@ -1,5 +1,6 @@
 import Container from "@/components/layout/Container";
 import Reveal from "@/components/animations/Reveal";
+import { ArrowUpRight } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -11,6 +12,12 @@ export default function Hero() {
           <div className="space-y-6">
 
             <Reveal delay={0}>
+              <span className="block text-sm font-medium tracking-[0.2em] uppercase text-[#8A7860] mb-3 whitespace-nowrap">
+                Tech Enthusiast · Lifelong Learner · Problem Solver
+              </span>
+            </Reveal>
+
+            <Reveal delay={0.05}>
               <h1 className="text-5xl md:text-7xl leading-[1.1] tracking-tight max-w-xl">
                 Hello, I’m
                 <br />
@@ -18,29 +25,21 @@ export default function Hero() {
               </h1>
             </Reveal>
 
-            <Reveal delay={0.1}>
-              <p className="text-lg max-w-2xl leading-relaxed text-[#5C4A36]">
-                A Full-Stack Developer and Cloud Associate skilled in building scalable
-                applications with Next.js, React and Django, and deploying cloud-native
-                solutions on Google Cloud Platform. I care about clean architecture,
-                dependable CI/CD, and backend performance as much as pixel-perfect UI.
-              </p>
-            </Reveal>
-
-            <Reveal delay={0.2}>
-              <p className="text-lg max-w-2xl leading-relaxed text-[#5C4A36]">
-                With hands-on experience across cloud infrastructure and full-stack web
-                development, I enjoy turning ideas into fast, reliable products — from
-                backend APIs to pixel-perfect interfaces. I&apos;m currently pursuing my
-                Master&apos;s in Computer Applications, always exploring new tools and
-                technologies along the way.
+            <Reveal delay={0.15}>
+              <p className="text-lg max-w-xl leading-relaxed text-[#5C4A36]">
+                From wiring up cloud infrastructure to shipping full-stack products end to
+                end, I love turning rough ideas into things people can actually use. I care
+                as much about what happens behind the scenes — clean architecture, reliable
+                deployments, systems that hold up under pressure — as I do about how an
+                interface feels in someone&apos;s hands. Still a student at heart, always
+                chasing the next thing worth learning.
               </p>
             </Reveal>
 
             <div className="flex gap-4 pt-6">
 
               {/* Primary → Resume */}
-              <Reveal delay={0.3} className="inline-flex">
+              <Reveal delay={0.25} className="inline-flex">
                 <a
                   href="/resume"
                   className="
@@ -53,15 +52,16 @@ export default function Hero() {
                   "
                 >
                   View Resume
-                  <span className="text-sm">↗</span>
+                  <ArrowUpRight size={16} />
                 </a>
               </Reveal>
 
               {/* Secondary → Projects */}
-              <Reveal delay={0.4} className="inline-flex">
+              <Reveal delay={0.35} className="inline-flex">
               <a
                 href="#projects"
                 className="
+                  flex items-center gap-2
                   px-7 py-3.5 rounded-full
                   border border-[#C8BAA6]
                   text-[#5C4A36]
@@ -69,7 +69,7 @@ export default function Hero() {
                   transition-all duration-300
                 "
               >
-                Explore Work
+                Explore Projects
               </a>
               </Reveal>
           </div>
