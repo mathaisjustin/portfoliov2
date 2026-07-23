@@ -15,7 +15,7 @@ export default function Services() {
 
           <Reveal delay={0.08}>
             <h2 className="text-4xl">
-              What I can help you with
+              How I can bring your ideas to life
             </h2>
           </Reveal>
 
@@ -44,21 +44,22 @@ export default function Services() {
 </h3>
 
     <p className="text-sm opacity-80 max-w-lg">
-      I build complete, production-ready applications using Next.js, React,
-      Node.js and Django — designed to scale, perform efficiently, and
-      deliver a seamless user experience.
+      Your idea deserves a product that actually works — end to end. I take
+      it from a rough concept to something real, handling everything in
+      between so you don&apos;t have to juggle multiple people to get there.
     </p>
 
     <p className="text-sm opacity-70 max-w-lg">
-      From idea to deployment, I focus on creating systems that are reliable,
-      maintainable, and built with real-world usage in mind.
+      Every piece is built to fit your project, not a one-size-fits-all
+      template — reliable under real usage, easy to maintain, and ready to
+      grow alongside your business.
     </p>
   </div>
 
   <div className="mt-8 space-y-2 text-sm opacity-70">
-    <p>— Frontend (React / Next.js)</p>
-    <p>— Backend APIs with Node.js & Django</p>
-    <p>— Database design (MySQL, MongoDB, Firebase)</p>
+    <p>— Interfaces people enjoy using</p>
+    <p>— APIs and systems built to scale</p>
+    <p>— Data architecture suited to your problem</p>
     <p>— Cloud deployment & hosting</p>
     <p>— Performance optimization</p>
   </div>
@@ -81,13 +82,14 @@ export default function Services() {
       </h3>
 
       <p className="text-sm opacity-80">
-        Cloud-native infrastructure on Google Cloud Platform and AWS.
+        Cloud infrastructure that stays reliable as your product grows, on
+        Google Cloud Platform and AWS.
       </p>
 
       <div className="text-sm opacity-70 space-y-1">
-        <p>— GCP / AWS setup</p>
-        <p>— Docker & Kubernetes</p>
-        <p>— CI/CD pipelines</p>
+        <p>— Cloud infrastructure setup & management</p>
+        <p>— Containerized deployments</p>
+        <p>— CI/CD pipelines for automated releases</p>
       </div>
     </div>
     </Reveal>
@@ -96,21 +98,22 @@ export default function Services() {
     <Reveal delay={0.3}>
     <div className="p-6 rounded-2xl border border-[#C8BAA6] space-y-4">
       <p className="text-xs uppercase tracking-widest">
-        eCommerce
+        Integrations
       </p>
 
       <h3 className="text-xl">
-        Online Stores & Integrations
+        API Integrations & Automation
       </h3>
 
       <p className="text-sm opacity-80">
-        Secure payments and admin tooling for online businesses.
+        Connecting the tools and services your business already relies on,
+        so data flows without manual busywork.
       </p>
 
       <div className="text-sm opacity-70 space-y-1">
-        <p>— Razorpay payment integration</p>
-        <p>— Product & order management</p>
-        <p>— Admin panels</p>
+        <p>— Third-party API integrations</p>
+        <p>— Payment gateway setup</p>
+        <p>— Workflow automation</p>
       </div>
     </div>
     </Reveal>
