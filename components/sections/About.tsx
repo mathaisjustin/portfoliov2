@@ -1,5 +1,6 @@
 import Container from "@/components/layout/Container";
 import Reveal from "@/components/animations/Reveal";
+import TechStackCarousel from "@/components/sections/TechStackCarousel";
 
 const skillGroups = [
   { title: "Programming", items: ["Python", "JavaScript", "TypeScript"] },
@@ -82,6 +83,8 @@ export default function About() {
           </div>
 
         </div>
+
+        <TechStackCarousel />
       </Container>
   );
 }
