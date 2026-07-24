@@ -4,10 +4,19 @@ import { useState } from "react";
 import Container from "@/components/layout/Container";
 import Reveal from "@/components/animations/Reveal";
 
+interface QualificationItem {
+  year: string;
+  role: string;
+  org: string;
+  desc?: string;
+  tag?: string;
+  cgpa?: string;
+}
+
 export default function Qualifications() {
   const [tab, setTab] = useState<"experience" | "education">("experience");
 
-  const experience = [
+  const experience: QualificationItem[] = [
     {
       year: "Oct 2025 — Dec 2025",
       role: "Full Stack Development Intern",
@@ -28,7 +37,7 @@ export default function Qualifications() {
     },
   ];
 
-  const education = [
+  const education: QualificationItem[] = [
     {
       year: "Aug 2024 — Present",
       role: "Masters in Computer Application (MCA)",
@@ -124,15 +133,15 @@ export default function Qualifications() {
                   <p className="text-sm opacity-60 whitespace-nowrap">{item.year}</p>
                 </div>
 
-                {(("tag" in item && item.tag) || ("cgpa" in item && item.cgpa)) && (
+                {(item.tag || item.cgpa) && (
                   <div className="flex flex-wrap items-center gap-2 mt-2">
-                    {"tag" in item && (
+                    {item.tag && (
                       <span className="text-xs px-2 py-1 rounded-full bg-[#EDE8DF] border border-[#C8BAA6]">
                         {item.tag}
                       </span>
                     )}
 
-                    {"cgpa" in item && item.cgpa && (
+                    {item.cgpa && (
                       <span className="text-xs px-2 py-1 rounded-full bg-[#EDE8DF] border border-[#C8BAA6]">
                         {item.cgpa}
                       </span>
@@ -144,7 +153,7 @@ export default function Qualifications() {
                   {item.org}
                 </p>
 
-                {"desc" in item && (
+                {item.desc && (
                   <p className="text-sm opacity-80 max-w-3xl leading-relaxed mt-3">
                     {item.desc}
                   </p>
