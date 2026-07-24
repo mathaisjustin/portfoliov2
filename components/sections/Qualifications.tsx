@@ -34,18 +34,24 @@ export default function Qualifications() {
       role: "Masters in Computer Application (MCA)",
       org: "St Aloysius Deemed to be University AIMIT, Mangaluru",
       tag: "Masters",
+      cgpa: "",
+      desc: "Pursuing a Master's degree focused on advanced software development, cloud computing, and applied computer science.",
     },
     {
       year: "Aug 2020 — May 2023",
       role: "Bachelors in Computer Application (BCA)",
-      org: "St Aloysius College (Autonomous), Mangaluru — CGPA 7.34",
+      org: "St Aloysius College (Autonomous), Mangaluru",
       tag: "Degree",
+      cgpa: "CGPA 7.34",
+      desc: "Studied core computer science and application development fundamentals, laying the foundation for a full-stack development career.",
     },
     {
       year: "2018 — 2020",
       role: "Pre-University Science",
-      org: "St Mary's College, Shirva — 62%",
+      org: "St Mary's College, Shirva",
       tag: "PUC",
+      cgpa: "62%",
+      desc: "Completed pre-university education with a focus on science and mathematics.",
     },
   ];
 
@@ -100,33 +106,46 @@ export default function Qualifications() {
       </div>
 
       {/* Timeline */}
-      <div className="border-t border-[#C8BAA6]">
+      <div className="relative pl-8">
+        <div className="absolute left-[7px] top-2 bottom-2 w-px bg-[#C8BAA6]" />
+
         {data.map((item, i) => (
           <Reveal key={`${tab}-${i}`} delay={i * 0.08}>
-            <div className="grid md:grid-cols-[180px_1fr] gap-6 py-6 border-b border-[#C8BAA6]">
-              {/* LEFT */}
-              <div className="space-y-2">
-                <p className="text-sm">{item.year}</p>
+            <div className={`relative ${i < data.length - 1 ? "mb-16" : ""}`}>
+              {/* Dot */}
+              <span className="absolute -left-8 top-1.5 w-3.5 h-3.5 rounded-full bg-[#FAF7F2] border-2 border-[#1C1410]" />
 
-                {"tag" in item && (
-                  <span className="text-xs px-2 py-1 rounded-full bg-[#EDE8DF] border border-[#C8BAA6] inline-block">
-                    {item.tag}
-                  </span>
+              <div>
+                <div className="flex flex-wrap items-baseline justify-between gap-3">
+                  <h3 className="text-2xl">
+                    {item.role}
+                  </h3>
+
+                  <p className="text-sm opacity-60 whitespace-nowrap">{item.year}</p>
+                </div>
+
+                {(("tag" in item && item.tag) || ("cgpa" in item && item.cgpa)) && (
+                  <div className="flex flex-wrap items-center gap-2 mt-2">
+                    {"tag" in item && (
+                      <span className="text-xs px-2 py-1 rounded-full bg-[#EDE8DF] border border-[#C8BAA6]">
+                        {item.tag}
+                      </span>
+                    )}
+
+                    {"cgpa" in item && item.cgpa && (
+                      <span className="text-xs px-2 py-1 rounded-full bg-[#EDE8DF] border border-[#C8BAA6]">
+                        {item.cgpa}
+                      </span>
+                    )}
+                  </div>
                 )}
-              </div>
 
-              {/* RIGHT */}
-              <div className="space-y-2">
-                <h3 className="text-xl font-medium">
-                  {item.role}
-                </h3>
-
-                <p className="text-sm opacity-70 italic">
+                <p className="text-sm opacity-70 italic mt-1">
                   {item.org}
                 </p>
 
                 {"desc" in item && (
-                  <p className="text-sm opacity-80 max-w-3xl">
+                  <p className="text-sm opacity-80 max-w-3xl leading-relaxed mt-3">
                     {item.desc}
                   </p>
                 )}
