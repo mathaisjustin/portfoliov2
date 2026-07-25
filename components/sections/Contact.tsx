@@ -1,5 +1,6 @@
 import Container from "@/components/layout/Container";
 import Reveal from "@/components/animations/Reveal";
+import CopyEmail from "@/components/ui/CopyEmail";
 
 export default function Contact() {
   return (
@@ -26,7 +27,9 @@ export default function Contact() {
           <Reveal delay={0.2}>
             <div className="pt-4">
               <a
-                href="mailto:mathaisjustin@gmail.com"
+                href="https://cal.com/mathaisjustin/intro-call"
+                target="_blank"
+                rel="noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#1C1410] text-[#FAF7F2] hover:opacity-90 transition"
               >
                 Get in touch
@@ -39,8 +42,7 @@ export default function Contact() {
           <Reveal delay={0.28}>
             <p className="text-sm opacity-60 pt-2">
               or email me directly at{" "}
-              <span className="underline">mathaisjustin@gmail.com</span>
-              {" "}· +91-8088312419 · Udupi, Karnataka, India
+              <CopyEmail email="mathaisjustin@gmail.com" />
             </p>
           </Reveal>
 
