@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
@@ -15,6 +16,15 @@ const navLinks = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  // TEMP: dev tuning controls for the logo — remove once size/position are finalized.
+  const [logoHeight, setLogoHeight] = useState(68);
+  const [logoOffsetX, setLogoOffsetX] = useState(0);
+  const [logoOffsetY, setLogoOffsetY] = useState(0);
+  const [logoRotate, setLogoRotate] = useState(0);
+  const [navPaddingY, setNavPaddingY] = useState(16);
+  const [navMaxWidth, setNavMaxWidth] = useState(1000);
+  const [navLinkSize, setNavLinkSize] = useState(18);
+  const LOGO_ASPECT = 1672 / 941;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,7 +37,7 @@ export default function Navbar() {
 
   return (
     <div className="sticky top-4 z-50">
-      <div className="max-w-[1000px] mx-auto px-6 relative">
+      <div className="mx-auto px-6 relative" style={{ maxWidth: navMaxWidth }}>
         <header
           className={`
             transition-all duration-300
@@ -39,8 +49,13 @@ export default function Navbar() {
             }
           `}
         >
-          <div className="px-6 py-4 flex items-center justify-between">
+          <div
+            className="px-6 flex items-center justify-between"
+            style={{ paddingTop: navPaddingY, paddingBottom: navPaddingY }}
+          >
 
+            {/* Logo sits absolutely over the header so resizing it never
+                affects the navbar's own height/layout. */}
             <a
               href="#top"
               onClick={(e) => {
@@ -48,13 +63,35 @@ export default function Navbar() {
                 setOpen(false);
                 window.scrollTo({ top: 0, behavior: "smooth" });
               }}
-              className="text-lg font-medium hover:opacity-70 transition-opacity"
+              className="absolute left-6 top-1/2 z-10 hover:opacity-70 transition-opacity"
+              style={{
+                transform: `translateY(calc(-50% + ${logoOffsetY}px)) translateX(${logoOffsetX}px) rotate(${logoRotate}deg)`,
+                willChange: "transform",
+              }}
             >
-              Justin Mathais
+              <Image
+                src="/logos/navbar.svg"
+                alt="Mathis Pustia"
+                width={160}
+                height={90}
+                priority
+                style={{
+                  height: logoHeight,
+                  width: logoHeight * LOGO_ASPECT,
+                  maxWidth: "none",
+                }}
+              />
             </a>
 
+            {/* Spacer reserving the logo's place in flex flow so nav links
+                don't shift; sized to the base logo footprint, not the live value. */}
+            <div className="invisible" style={{ height: 32, width: 32 * LOGO_ASPECT }} />
+
             {/* Desktop nav */}
-            <nav className="hidden md:flex items-center gap-8 text-base text-[#5C4A36]">
+            <nav
+              className="hidden md:flex items-center gap-8 text-[#5C4A36]"
+              style={{ fontSize: navLinkSize }}
+            >
               {navLinks.map((item) => (
                 <a
                   key={item.label}
@@ -110,7 +147,7 @@ export default function Navbar() {
                 tabIndex={open ? 0 : -1}
                 style={{ transitionDelay: open ? `${i * 30}ms` : "0ms" }}
                 className={`
-                  text-lg text-[#1C1410] px-4 py-3 rounded-xl
+                  text-xl text-[#1C1410] px-4 py-3 rounded-xl
                   hover:bg-[#EDE8DF]
                   transition-all duration-200 ease-out
                   ${open ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"}
@@ -133,6 +170,90 @@ export default function Navbar() {
           ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
         `}
       />
+
+      {/* TEMP dev tuning panel — floats outside the navbar entirely so it
+          can never affect header layout. Remove once logo size/position
+          are finalized. */}
+      <div className="hidden lg:grid fixed bottom-4 right-4 z-[100] grid-cols-1 gap-2 text-xs text-[#5C4A36] rounded-lg px-3 py-2">
+        <label className="flex items-center gap-2">
+          <span className="w-14 shrink-0">Size</span>
+          <input
+            type="range"
+            min={16}
+            max={80}
+            value={logoHeight}
+            onChange={(e) => setLogoHeight(Number(e.target.value))}
+          />
+          <span className="w-12 shrink-0 text-right tabular-nums">{logoHeight}px</span>
+        </label>
+        <label className="flex items-center gap-2">
+          <span className="w-14 shrink-0">X pos</span>
+          <input
+            type="range"
+            min={-100}
+            max={100}
+            value={logoOffsetX}
+            onChange={(e) => setLogoOffsetX(Number(e.target.value))}
+          />
+          <span className="w-12 shrink-0 text-right tabular-nums">{logoOffsetX}px</span>
+        </label>
+        <label className="flex items-center gap-2">
+          <span className="w-14 shrink-0">Y pos</span>
+          <input
+            type="range"
+            min={-100}
+            max={100}
+            value={logoOffsetY}
+            onChange={(e) => setLogoOffsetY(Number(e.target.value))}
+          />
+          <span className="w-12 shrink-0 text-right tabular-nums">{logoOffsetY}px</span>
+        </label>
+        <label className="flex items-center gap-2">
+          <span className="w-14 shrink-0">Rotate</span>
+          <input
+            type="range"
+            min={-180}
+            max={180}
+            value={logoRotate}
+            onChange={(e) => setLogoRotate(Number(e.target.value))}
+          />
+          <span className="w-12 shrink-0 text-right tabular-nums">{logoRotate}°</span>
+        </label>
+        <hr className="border-[#C8BAA6]/40" />
+        <label className="flex items-center gap-2">
+          <span className="w-14 shrink-0">Nav H</span>
+          <input
+            type="range"
+            min={4}
+            max={48}
+            value={navPaddingY}
+            onChange={(e) => setNavPaddingY(Number(e.target.value))}
+          />
+          <span className="w-12 shrink-0 text-right tabular-nums">{navPaddingY}px</span>
+        </label>
+        <label className="flex items-center gap-2">
+          <span className="w-14 shrink-0">Nav W</span>
+          <input
+            type="range"
+            min={600}
+            max={1400}
+            value={navMaxWidth}
+            onChange={(e) => setNavMaxWidth(Number(e.target.value))}
+          />
+          <span className="w-12 shrink-0 text-right tabular-nums">{navMaxWidth}px</span>
+        </label>
+        <label className="flex items-center gap-2">
+          <span className="w-14 shrink-0">Link sz</span>
+          <input
+            type="range"
+            min={12}
+            max={32}
+            value={navLinkSize}
+            onChange={(e) => setNavLinkSize(Number(e.target.value))}
+          />
+          <span className="w-12 shrink-0 text-right tabular-nums">{navLinkSize}px</span>
+        </label>
+      </div>
     </div>
   );
 }
