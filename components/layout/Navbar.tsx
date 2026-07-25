@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import confetti from "canvas-confetti";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -13,18 +14,25 @@ const navLinks = [
   { label: "Blogs", href: "#blogs" },
 ];
 
+const LOGO_HEIGHT = 80;
+const LOGO_OFFSET_X = -6;
+const LOGO_OFFSET_Y = -10;
+const LOGO_ROTATE = -6;
+const NAV_PADDING_Y = 15;
+const NAV_MAX_WIDTH = 941;
+const NAV_LINK_SIZE = 17;
+const LOGO_ASPECT = 1672 / 941;
+const HOLD_DURATION_MS = 1200;
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
-  // TEMP: dev tuning controls for the logo — remove once size/position are finalized.
-  const [logoHeight, setLogoHeight] = useState(68);
-  const [logoOffsetX, setLogoOffsetX] = useState(0);
-  const [logoOffsetY, setLogoOffsetY] = useState(0);
-  const [logoRotate, setLogoRotate] = useState(0);
-  const [navPaddingY, setNavPaddingY] = useState(16);
-  const [navMaxWidth, setNavMaxWidth] = useState(1000);
-  const [navLinkSize, setNavLinkSize] = useState(18);
-  const LOGO_ASPECT = 1672 / 941;
+  const [fillPercent, setFillPercent] = useState(0);
+  const [charging, setCharging] = useState(false);
+  const rafRef = useRef<number | null>(null);
+  const startRef = useRef(0);
+  const completedRef = useRef(false);
+  const logoRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,9 +43,52 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const stopCharging = () => {
+    if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    rafRef.current = null;
+    setCharging(false);
+    setFillPercent(0);
+  };
+
+  const startCharging = () => {
+    completedRef.current = false;
+    setCharging(true);
+    startRef.current = performance.now();
+
+    const tick = (now: number) => {
+      const elapsed = now - startRef.current;
+      const pct = Math.min(100, (elapsed / HOLD_DURATION_MS) * 100);
+      setFillPercent(pct);
+
+      if (pct >= 100) {
+        if (!completedRef.current) {
+          completedRef.current = true;
+          const rect = logoRef.current?.getBoundingClientRect();
+          confetti({
+            origin: rect
+              ? {
+                  x: (rect.left + rect.width / 2) / window.innerWidth,
+                  y: (rect.top + rect.height / 2) / window.innerHeight,
+                }
+              : undefined,
+            particleCount: 120,
+            spread: 70,
+            startVelocity: 35,
+            colors: ["#B95E3C", "#C79A3B", "#1C1410", "#FAF7F2"],
+          });
+        }
+        return;
+      }
+
+      rafRef.current = requestAnimationFrame(tick);
+    };
+
+    rafRef.current = requestAnimationFrame(tick);
+  };
+
   return (
     <div className="sticky top-4 z-50">
-      <div className="mx-auto px-6 relative" style={{ maxWidth: navMaxWidth }}>
+      <div className="mx-auto px-6 relative" style={{ maxWidth: NAV_MAX_WIDTH }}>
         <header
           className={`
             transition-all duration-300
@@ -51,36 +102,65 @@ export default function Navbar() {
         >
           <div
             className="px-6 flex items-center justify-between"
-            style={{ paddingTop: navPaddingY, paddingBottom: navPaddingY }}
+            style={{ paddingTop: NAV_PADDING_Y, paddingBottom: NAV_PADDING_Y }}
           >
 
             {/* Logo sits absolutely over the header so resizing it never
                 affects the navbar's own height/layout. */}
             <a
+              ref={logoRef}
               href="#top"
               onClick={(e) => {
                 e.preventDefault();
                 setOpen(false);
-                window.scrollTo({ top: 0, behavior: "smooth" });
+                if (!completedRef.current) {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
               }}
-              className="absolute left-6 top-1/2 z-10 hover:opacity-70 transition-opacity"
+              onPointerDown={(e) => {
+                e.preventDefault();
+                startCharging();
+              }}
+              onPointerUp={stopCharging}
+              onPointerLeave={stopCharging}
+              onPointerCancel={stopCharging}
+              className="absolute left-6 top-1/2 z-10 select-none touch-none"
               style={{
-                transform: `translateY(calc(-50% + ${logoOffsetY}px)) translateX(${logoOffsetX}px) rotate(${logoRotate}deg)`,
-                willChange: "transform",
+                transform: `translateY(calc(-50% + ${LOGO_OFFSET_Y}px)) translateX(${LOGO_OFFSET_X}px) rotate(${LOGO_ROTATE}deg)`,
               }}
             >
-              <Image
-                src="/logos/navbar.svg"
-                alt="Mathis Pustia"
-                width={160}
-                height={90}
-                priority
-                style={{
-                  height: logoHeight,
-                  width: logoHeight * LOGO_ASPECT,
-                  maxWidth: "none",
-                }}
-              />
+              <span
+                className="relative block"
+                style={{ height: LOGO_HEIGHT, width: LOGO_HEIGHT * LOGO_ASPECT }}
+              >
+                <Image
+                  src="/logos/navbar.svg"
+                  alt="Mathis Pustia"
+                  width={160}
+                  height={90}
+                  priority
+                  style={{
+                    height: LOGO_HEIGHT,
+                    width: LOGO_HEIGHT * LOGO_ASPECT,
+                    maxWidth: "none",
+                  }}
+                />
+                <Image
+                  src="/logos/navbar-hover.svg"
+                  alt=""
+                  aria-hidden="true"
+                  width={160}
+                  height={90}
+                  className="absolute inset-0"
+                  style={{
+                    height: LOGO_HEIGHT,
+                    width: LOGO_HEIGHT * LOGO_ASPECT,
+                    maxWidth: "none",
+                    clipPath: `inset(0 ${100 - fillPercent}% 0 0)`,
+                    transition: charging ? "none" : "clip-path 400ms ease-out",
+                  }}
+                />
+              </span>
             </a>
 
             {/* Spacer reserving the logo's place in flex flow so nav links
@@ -90,7 +170,7 @@ export default function Navbar() {
             {/* Desktop nav */}
             <nav
               className="hidden md:flex items-center gap-8 text-[#5C4A36]"
-              style={{ fontSize: navLinkSize }}
+              style={{ fontSize: NAV_LINK_SIZE }}
             >
               {navLinks.map((item) => (
                 <a
@@ -101,7 +181,7 @@ export default function Navbar() {
                   {item.label}
                   <span className="
                     absolute left-0 -bottom-1 h-[1px] w-0
-                    bg-[#5C4A36]
+                    bg-[#B95E3C]
                     transition-all duration-300
                     group-hover:w-full
                   " />
@@ -170,90 +250,6 @@ export default function Navbar() {
           ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
         `}
       />
-
-      {/* TEMP dev tuning panel — floats outside the navbar entirely so it
-          can never affect header layout. Remove once logo size/position
-          are finalized. */}
-      <div className="hidden lg:grid fixed bottom-4 right-4 z-[100] grid-cols-1 gap-2 text-xs text-[#5C4A36] rounded-lg px-3 py-2">
-        <label className="flex items-center gap-2">
-          <span className="w-14 shrink-0">Size</span>
-          <input
-            type="range"
-            min={16}
-            max={80}
-            value={logoHeight}
-            onChange={(e) => setLogoHeight(Number(e.target.value))}
-          />
-          <span className="w-12 shrink-0 text-right tabular-nums">{logoHeight}px</span>
-        </label>
-        <label className="flex items-center gap-2">
-          <span className="w-14 shrink-0">X pos</span>
-          <input
-            type="range"
-            min={-100}
-            max={100}
-            value={logoOffsetX}
-            onChange={(e) => setLogoOffsetX(Number(e.target.value))}
-          />
-          <span className="w-12 shrink-0 text-right tabular-nums">{logoOffsetX}px</span>
-        </label>
-        <label className="flex items-center gap-2">
-          <span className="w-14 shrink-0">Y pos</span>
-          <input
-            type="range"
-            min={-100}
-            max={100}
-            value={logoOffsetY}
-            onChange={(e) => setLogoOffsetY(Number(e.target.value))}
-          />
-          <span className="w-12 shrink-0 text-right tabular-nums">{logoOffsetY}px</span>
-        </label>
-        <label className="flex items-center gap-2">
-          <span className="w-14 shrink-0">Rotate</span>
-          <input
-            type="range"
-            min={-180}
-            max={180}
-            value={logoRotate}
-            onChange={(e) => setLogoRotate(Number(e.target.value))}
-          />
-          <span className="w-12 shrink-0 text-right tabular-nums">{logoRotate}°</span>
-        </label>
-        <hr className="border-[#C8BAA6]/40" />
-        <label className="flex items-center gap-2">
-          <span className="w-14 shrink-0">Nav H</span>
-          <input
-            type="range"
-            min={4}
-            max={48}
-            value={navPaddingY}
-            onChange={(e) => setNavPaddingY(Number(e.target.value))}
-          />
-          <span className="w-12 shrink-0 text-right tabular-nums">{navPaddingY}px</span>
-        </label>
-        <label className="flex items-center gap-2">
-          <span className="w-14 shrink-0">Nav W</span>
-          <input
-            type="range"
-            min={600}
-            max={1400}
-            value={navMaxWidth}
-            onChange={(e) => setNavMaxWidth(Number(e.target.value))}
-          />
-          <span className="w-12 shrink-0 text-right tabular-nums">{navMaxWidth}px</span>
-        </label>
-        <label className="flex items-center gap-2">
-          <span className="w-14 shrink-0">Link sz</span>
-          <input
-            type="range"
-            min={12}
-            max={32}
-            value={navLinkSize}
-            onChange={(e) => setNavLinkSize(Number(e.target.value))}
-          />
-          <span className="w-12 shrink-0 text-right tabular-nums">{navLinkSize}px</span>
-        </label>
-      </div>
     </div>
   );
 }

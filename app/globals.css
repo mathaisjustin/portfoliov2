@@ -9,6 +9,27 @@
   --color-heading: #1C1410;
 }
 
+/* ===== TEXT SELECTION ===== */
+::selection {
+  background-color: #B95E3C;
+  color: #FAF7F2;
+}
+
+/* ===== SCROLLBAR =====
+   Native scrollbar is fully hidden; a custom one is rendered by
+   components/ui/CustomScrollbar.tsx so we have full control over its
+   shape/color regardless of OS/browser scrollbar chrome. */
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
 /* ===== BASE ===== */
 body {
   background-color: var(--color-background) !important;

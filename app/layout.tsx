@@ -3,6 +3,8 @@ import { Nunito, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import CustomScrollbar from "@/components/ui/CustomScrollbar";
+import ScrollBlurOverlay from "@/components/layout/ScrollBlurOverlay";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -32,6 +34,9 @@ export default function RootLayout({
       >
         {/* 🌫️ Background Layer (IMPORTANT for glass effect) */}
         <div className="min-h-screen bg-gradient-to-b from-[#FAF7F2] via-[#F3EFE8] to-[#FAF7F2]">
+
+          <CustomScrollbar />
+          <ScrollBlurOverlay />
 
           <Navbar />
 

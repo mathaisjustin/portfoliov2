@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from "react";
 import {
   SiPython,
   SiJavascript,
@@ -44,6 +47,7 @@ const techs = [
 
 export default function TechStackCarousel() {
   const loop = [...techs, ...techs];
+  const [paused, setPaused] = useState(false);
 
   return (
     <div className="pt-16">
@@ -52,7 +56,7 @@ export default function TechStackCarousel() {
       </p>
 
       <div
-        className="relative overflow-hidden"
+        className="relative overflow-hidden py-4"
         style={{
           maskImage:
             "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
@@ -60,13 +64,18 @@ export default function TechStackCarousel() {
             "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
         }}
       >
-        <div className="flex w-max animate-tech-scroll gap-14">
+        <div
+          className="flex w-max animate-tech-scroll gap-14"
+          style={{ animationPlayState: paused ? "paused" : "running" }}
+        >
           {loop.map((tech, i) => {
             const Icon = tech.icon;
             return (
               <div
                 key={`${tech.name}-${i}`}
-                className="flex flex-col items-center justify-center gap-2 w-24 shrink-0 grayscale hover:grayscale-0 transition-all duration-300"
+                onMouseEnter={() => setPaused(true)}
+                onMouseLeave={() => setPaused(false)}
+                className="flex flex-col items-center justify-center gap-2 w-24 shrink-0 grayscale hover:grayscale-0 hover:scale-125 transition-all duration-300"
               >
                 <Icon size={56} style={{ color: tech.color }} />
               </div>
