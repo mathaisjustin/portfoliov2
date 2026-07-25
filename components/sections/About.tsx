@@ -1,6 +1,7 @@
 import Container from "@/components/layout/Container";
 import Reveal from "@/components/animations/Reveal";
 import TechStackCarousel from "@/components/sections/TechStackCarousel";
+import SkillPills from "@/components/sections/SkillPills";
 
 const skillGroups = [
   { title: "Programming", items: ["Python", "JavaScript", "TypeScript"] },
@@ -67,16 +68,7 @@ export default function About() {
               <Reveal key={group.title} delay={0.05 + i * 0.08}>
                 <div className="space-y-4">
                   <p className="text-sm uppercase tracking-widest">{group.title}</p>
-                  <div className="flex flex-wrap gap-3">
-                    {group.items.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3.5 py-1.5 rounded-full border border-[#C8BAA6] text-sm"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                  <SkillPills items={group.items} />
                 </div>
               </Reveal>
             ))}

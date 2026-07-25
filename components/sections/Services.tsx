@@ -1,5 +1,6 @@
 import Container from "@/components/layout/Container";
 import Reveal from "@/components/animations/Reveal";
+import BulletList from "@/components/sections/BulletList";
 
 export default function Services() {
   return (
@@ -35,7 +36,7 @@ export default function Services() {
 <div className="p-10 rounded-2xl bg-[#1C1410] text-[#FAF7F2] flex flex-col justify-between min-h-[420px] h-full">
 
   <div className="space-y-6">
-    <p className="text-xs uppercase tracking-widest opacity-70">
+    <p className="text-xs uppercase tracking-widest opacity-70 animate-badge-pulse">
       Most Popular
     </p>
 
@@ -56,13 +57,16 @@ export default function Services() {
     </p>
   </div>
 
-  <div className="mt-8 space-y-2 text-sm opacity-70">
-    <p>— Interfaces people enjoy using</p>
-    <p>— APIs and systems built to scale</p>
-    <p>— Data architecture suited to your problem</p>
-    <p>— Cloud deployment & hosting</p>
-    <p>— Performance optimization</p>
-  </div>
+  <BulletList
+    className="mt-8 space-y-2 text-sm opacity-70"
+    items={[
+      "Interfaces people enjoy using",
+      "APIs and systems built to scale",
+      "Data architecture suited to your problem",
+      "Cloud deployment & hosting",
+      "Performance optimization",
+    ]}
+  />
 
 </div>
   </Reveal>
@@ -72,7 +76,7 @@ export default function Services() {
 
     {/* Card 2 */}
     <Reveal delay={0.2}>
-    <div className="p-6 rounded-2xl border border-[#C8BAA6] space-y-4">
+    <div className="p-6 rounded-2xl border border-[#C8BAA6] space-y-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:border-[#B95E3C]/50">
       <p className="text-xs uppercase tracking-widest">
         Infrastructure
       </p>
@@ -86,17 +90,20 @@ export default function Services() {
         Google Cloud Platform and AWS.
       </p>
 
-      <div className="text-sm opacity-70 space-y-1">
-        <p>— Cloud infrastructure setup & management</p>
-        <p>— Containerized deployments</p>
-        <p>— CI/CD pipelines for automated releases</p>
-      </div>
+      <BulletList
+        className="text-sm opacity-70 space-y-1"
+        items={[
+          "Cloud infrastructure setup & management",
+          "Containerized deployments",
+          "CI/CD pipelines for automated releases",
+        ]}
+      />
     </div>
     </Reveal>
 
     {/* Card 3 */}
     <Reveal delay={0.3}>
-    <div className="p-6 rounded-2xl border border-[#C8BAA6] space-y-4">
+    <div className="p-6 rounded-2xl border border-[#C8BAA6] space-y-4 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(0,0,0,0.08)] hover:border-[#B95E3C]/50">
       <p className="text-xs uppercase tracking-widest">
         Integrations
       </p>
@@ -110,11 +117,10 @@ export default function Services() {
         so data flows without manual busywork.
       </p>
 
-      <div className="text-sm opacity-70 space-y-1">
-        <p>— Third-party API integrations</p>
-        <p>— Payment gateway setup</p>
-        <p>— Workflow automation</p>
-      </div>
+      <BulletList
+        className="text-sm opacity-70 space-y-1"
+        items={["Third-party API integrations", "Payment gateway setup", "Workflow automation"]}
+      />
     </div>
     </Reveal>
 

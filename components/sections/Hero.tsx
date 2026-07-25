@@ -1,5 +1,6 @@
 import Container from "@/components/layout/Container";
 import Reveal from "@/components/animations/Reveal";
+import HelloRotator from "@/components/sections/HelloRotator";
 import { ArrowUpRight } from "lucide-react";
 
 export default function Hero() {
@@ -19,9 +20,9 @@ export default function Hero() {
 
             <Reveal delay={0.05}>
               <h1 className="text-5xl md:text-7xl leading-[1.1] tracking-tight max-w-xl">
-                Hello, I’m
+                <HelloRotator />
                 <br />
-                Justin Mathais
+                I’m Justin Mathais
               </h1>
             </Reveal>
 

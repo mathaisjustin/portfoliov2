@@ -5,6 +5,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import CustomScrollbar from "@/components/ui/CustomScrollbar";
 import ScrollBlurOverlay from "@/components/layout/ScrollBlurOverlay";
+import LoadingScreen from "@/components/ui/LoadingScreen";
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -32,6 +33,8 @@ export default function RootLayout({
       <body
         className={`${nunito.variable} ${instrument.variable} min-h-full antialiased`}
       >
+        <LoadingScreen />
+
         {/* 🌫️ Background Layer (IMPORTANT for glass effect) */}
         <div className="min-h-screen bg-gradient-to-b from-[#FAF7F2] via-[#F3EFE8] to-[#FAF7F2]">
 
