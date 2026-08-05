@@ -3,9 +3,11 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const GREETINGS = [
-  // English
-  "Hello", "Hi", "Hey",
+// English leads so every visitor recognizes the first couple of beats,
+// then Hindi (a personal touch), then the rest of the world on shuffle.
+const OPENING = ["Hello", "Hi", "नमस्ते", "नमस्कार"];
+
+const REST = [
   // Spanish
   "Hola", "Qué tal",
   // French
@@ -22,8 +24,6 @@ const GREETINGS = [
   "안녕하세요", "안녕",
   // Chinese
   "你好", "嗨",
-  // Hindi
-  "नमस्ते", "नमस्कार",
   // Russian
   "Привет", "Здравствуйте",
   // Arabic
@@ -42,14 +42,17 @@ function shuffle<T>(arr: T[]): T[] {
 }
 
 export default function HelloRotator() {
-  const [order, setOrder] = useState(GREETINGS);
+  // Fixed opening (English, then Hindi) followed by the rest of the
+  // languages in random order; the whole sequence then loops from the top,
+  // so every cycle starts familiar before ranging further afield.
+  const [order, setOrder] = useState([...OPENING, ...REST]);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
     // Shuffle only after mount so the server-rendered and first client
     // render both show the same deterministic "Hello" — avoids a
     // hydration mismatch from randomizing during SSR.
-    setOrder(shuffle(GREETINGS));
+    setOrder([...OPENING, ...shuffle(REST)]);
   }, []);
 
   useEffect(() => {
@@ -63,7 +66,7 @@ export default function HelloRotator() {
     <span className="inline-grid">
       <AnimatePresence mode="wait">
         <motion.span
-          key={order[index]}
+          key={`${order[index]}-${index}`}
           style={{ gridArea: "1 / 1" }}
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}

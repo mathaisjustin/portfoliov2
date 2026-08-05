@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import confetti from "canvas-confetti";
 
@@ -25,14 +26,37 @@ const LOGO_ASPECT = 1672 / 941;
 const HOLD_DURATION_MS = 1200;
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [fillPercent, setFillPercent] = useState(0);
   const [charging, setCharging] = useState(false);
+  // On the home page's initial load, the loading screen's signature flies
+  // in and lands here — stay hidden until it arrives so there's no
+  // double-image flash underneath it.
+  const [logoVisible, setLogoVisible] = useState(() => pathname !== "/");
   const rafRef = useRef<number | null>(null);
   const startRef = useRef(0);
   const completedRef = useRef(false);
   const logoRef = useRef<HTMLAnchorElement>(null);
+
+  useEffect(() => {
+    if (pathname !== "/") return;
+    const reveal = () => setLogoVisible(true);
+    window.addEventListener("mj-loading-flight-land", reveal);
+    // Fallback: if the flight-land event never arrives for any reason (a
+    // script error, a stalled connection outlasting the loading screen's
+    // own safety timeout, etc.) the logo must still show up eventually
+    // instead of staying invisible forever.
+    const fallback = window.setTimeout(reveal, 9000);
+    return () => {
+      window.removeEventListener("mj-loading-flight-land", reveal);
+      window.clearTimeout(fallback);
+    };
+    // Intentionally run once: this only governs the initial hard-load
+    // handoff, not subsequent client-side navigation back to "/".
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -130,8 +154,13 @@ export default function Navbar() {
               }}
             >
               <span
+                data-navbar-logo-target
                 className="relative block"
-                style={{ height: LOGO_HEIGHT, width: LOGO_HEIGHT * LOGO_ASPECT }}
+                style={{
+                  height: LOGO_HEIGHT,
+                  width: LOGO_HEIGHT * LOGO_ASPECT,
+                  opacity: logoVisible ? 1 : 0,
+                }}
               >
                 <Image
                   src="/logos/navbar.svg"
