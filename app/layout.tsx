@@ -19,7 +19,7 @@ const instrument = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Justin Mathais",
+  title: "mathaisjustin",
   description: "Personal portfolio and blog",
 };
 
