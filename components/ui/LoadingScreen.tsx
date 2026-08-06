@@ -13,6 +13,27 @@ const MARK_HEIGHT = 214;
 // asset on a bad connection, etc.) start the finish sequence anyway so the
 // overlay can't get stuck up forever.
 const MAX_WAIT_MS = 8000;
+// The site's links are plain <a> tags, so every navigation (including
+// "back to home") is a full page load — this flag is how we tell a real
+// first visit from a repeat one within the same browser session, so the
+// intro only ever plays once.
+const SESSION_KEY = "mj-loading-shown";
+
+function hasShownThisSession(): boolean {
+  try {
+    return sessionStorage.getItem(SESSION_KEY) === "1";
+  } catch {
+    return false;
+  }
+}
+
+function markShownThisSession() {
+  try {
+    sessionStorage.setItem(SESSION_KEY, "1");
+  } catch {
+    // Ignore (e.g. storage disabled) — worst case the intro replays.
+  }
+}
 
 interface FlightTarget {
   x: number;
@@ -44,10 +65,23 @@ export default function LoadingScreen() {
   useEffect(() => {
     if (!isHome) return;
 
+    // Every navigation on this site is a full page load, so without this
+    // check the intro would replay on every trip back to "/". Only ever
+    // play it once per browser session, and skip straight to the landed
+    // state instantly (no overlay flash) on every visit after that.
+    if (hasShownThisSession()) {
+      setLoading(false);
+      // Deferred so Navbar's listener (mounted in the same commit) is
+      // guaranteed to be attached before this fires.
+      window.setTimeout(() => window.dispatchEvent(new Event("mj-loading-flight-land")), 0);
+      return;
+    }
+
     // On a slow/metered connection, skip the animated reveal entirely —
     // waiting through a multi-second fill-and-fly sequence on top of an
     // already-slow load only makes the wait feel longer.
     if (isSlowConnection()) {
+      markShownThisSession();
       window.dispatchEvent(new Event("mj-loading-flight-land"));
       setLoading(false);
       return;
@@ -81,6 +115,7 @@ export default function LoadingScreen() {
         window.setTimeout(() => {
           // Reveal the real navbar logo only once the flying copy has
           // actually landed, so the two are never visible together.
+          markShownThisSession();
           window.dispatchEvent(new Event("mj-loading-flight-land"));
           setLoading(false);
         }, FLIGHT_MS);
@@ -99,6 +134,7 @@ export default function LoadingScreen() {
     const maxWaitTimer = window.setTimeout(() => {
       if (finished) return;
       finished = true;
+      markShownThisSession();
       window.dispatchEvent(new Event("mj-loading-flight-land"));
       setLoading(false);
     }, MAX_WAIT_MS);
@@ -126,6 +162,7 @@ export default function LoadingScreen() {
       {loading && (
         <motion.div
           initial={false}
+          data-mj-loading
           className="fixed inset-0 z-[999] flex flex-col items-center justify-center overflow-hidden pointer-events-none"
         >
           {/* Background fades independently so it clears the instant the

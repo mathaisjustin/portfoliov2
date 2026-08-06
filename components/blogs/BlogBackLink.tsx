@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import BackLink from "@/components/ui/BackLink";
 
 export default function BlogBackLink() {
   const [from, setFrom] = useState<"home" | "list">("home");
@@ -11,14 +12,7 @@ export default function BlogBackLink() {
   }, []);
 
   const href = from === "list" ? "/blogs" : "/#blogs";
-  const label = from === "list" ? "← Back to all blogs" : "← Back to home";
+  const label = from === "list" ? "Back to all blogs" : "Back to Home";
 
-  return (
-    <a
-      href={href}
-      className="inline-flex items-center gap-2 text-sm opacity-70 hover:opacity-100 transition mb-10"
-    >
-      {label}
-    </a>
-  );
+  return <BackLink href={href} label={label} className="mb-10" />;
 }

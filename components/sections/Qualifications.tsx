@@ -20,6 +20,12 @@ export default function Qualifications() {
 
   const experience: QualificationItem[] = [
     {
+      year: "Aug 2026 — Present",
+      role: "Software Engineer 1",
+      org: "Elsevier (RELX Group), Bengaluru, Karnataka",
+      desc: "Onboarding into Elsevier's engineering organization, building foundational knowledge of the team's codebase and architecture alongside senior engineers, and ramping up on Elsevier's development standards including code review and CI/CD processes.",
+    },
+    {
       year: "Oct 2025 — Dec 2025",
       role: "Full Stack Development Intern",
       org: "Locale Homestays, Remote / OCI",
@@ -41,12 +47,12 @@ export default function Qualifications() {
 
   const education: QualificationItem[] = [
     {
-      year: "Aug 2024 — Present",
+      year: "Aug 2024 — July 2026",
       role: "Masters in Computer Application (MCA)",
       org: "St Aloysius Deemed to be University AIMIT, Mangaluru",
       tag: "Masters",
-      cgpa: "",
-      desc: "Pursuing a Master's degree focused on advanced software development, cloud computing, and applied computer science.",
+      cgpa: "CGPA 7.9",
+      desc: "Completed a Master's degree focused on advanced software development, cloud computing, and applied computer science.",
     },
     {
       year: "Aug 2020 — May 2023",

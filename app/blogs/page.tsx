@@ -1,6 +1,7 @@
 import Container from "@/components/layout/Container";
 import Reveal from "@/components/animations/Reveal";
 import BlogLink from "@/components/blogs/BlogLink";
+import BackLink from "@/components/ui/BackLink";
 import { blogs } from "@/lib/blogs";
 
 export default function BlogsPage() {
@@ -8,12 +9,7 @@ export default function BlogsPage() {
     <Container className="pt-12 pb-16">
 
       <Reveal delay={0}>
-        <a
-          href="/#blogs"
-          className="inline-flex items-center gap-2 text-sm opacity-70 hover:opacity-100 transition mb-10"
-        >
-          ← Back to home
-        </a>
+        <BackLink href="/#blogs" label="Back to Home" className="mb-10" />
       </Reveal>
 
       {/* Header */}

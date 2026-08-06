@@ -30,6 +30,14 @@ html::-webkit-scrollbar {
   height: 0;
 }
 
+/* ===== LOADING SCREEN =====
+   Set synchronously (before hydration) by the inline script in
+   app/layout.tsx when this browser session has already seen the intro,
+   so a repeat page load never paints even a flash of it. */
+html.mj-skip-intro [data-mj-loading] {
+  display: none !important;
+}
+
 /* ===== BASE ===== */
 body {
   background-color: var(--color-background) !important;

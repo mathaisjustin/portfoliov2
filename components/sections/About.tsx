@@ -44,8 +44,8 @@ export default function About() {
                 Over the past few years, that curiosity has turned into real experience —
                 shipping production applications, managing cloud-native infrastructure,
                 and collaborating with teams to turn ideas into something people actually
-                use. I&apos;m currently pursuing my Master&apos;s in Computer Applications,
-                but the learning never really stops for me — there&apos;s always a new
+                use. I completed my Master&apos;s in Computer Applications in 2026, but
+                the learning never really stops for me — there&apos;s always a new
                 tool, framework, or problem worth chasing.
               </p>
             </Reveal>
