@@ -2,10 +2,16 @@ import Container from "@/components/layout/Container";
 import Reveal from "@/components/animations/Reveal";
 import ProjectCard from "@/components/sections/ProjectCard";
 import { projects } from "@/lib/projects";
+import BackLink from "@/components/ui/BackLink";
 
 export default function ProjectsPage() {
   return (
     <Container className="pt-12 pb-16">
+
+      {/* Breadcrumb */}
+      <Reveal delay={0}>
+        <BackLink href="/#projects" label="Back to Home" className="mb-8" />
+      </Reveal>
 
       {/* Header */}
       <div className="mb-16 space-y-4">

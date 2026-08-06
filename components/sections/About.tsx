@@ -1,6 +1,7 @@
 import Container from "@/components/layout/Container";
 import Reveal from "@/components/animations/Reveal";
 import TechStackCarousel from "@/components/sections/TechStackCarousel";
+import SkillPills from "@/components/sections/SkillPills";
 
 const skillGroups = [
   { title: "Programming", items: ["Python", "JavaScript", "TypeScript"] },
@@ -43,8 +44,8 @@ export default function About() {
                 Over the past few years, that curiosity has turned into real experience —
                 shipping production applications, managing cloud-native infrastructure,
                 and collaborating with teams to turn ideas into something people actually
-                use. I&apos;m currently pursuing my Master&apos;s in Computer Applications,
-                but the learning never really stops for me — there&apos;s always a new
+                use. I completed my Master&apos;s in Computer Applications in 2026, but
+                the learning never really stops for me — there&apos;s always a new
                 tool, framework, or problem worth chasing.
               </p>
             </Reveal>
@@ -67,16 +68,7 @@ export default function About() {
               <Reveal key={group.title} delay={0.05 + i * 0.08}>
                 <div className="space-y-4">
                   <p className="text-sm uppercase tracking-widest">{group.title}</p>
-                  <div className="flex flex-wrap gap-3">
-                    {group.items.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3.5 py-1.5 rounded-full border border-[#C8BAA6] text-sm"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
+                  <SkillPills items={group.items} />
                 </div>
               </Reveal>
             ))}

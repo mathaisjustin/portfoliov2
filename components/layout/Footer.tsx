@@ -21,7 +21,7 @@ const ventures = [
 
 export default function Footer() {
   return (
-    <footer className="w-full mt-24 bg-[#1C1410] text-[#FAF7F2]">
+    <footer className="w-full mt-24 overflow-hidden bg-[#1C1410] text-[#FAF7F2]">
       <Container>
         <div className="py-16 grid md:grid-cols-3 gap-12">
 
@@ -150,13 +150,13 @@ export default function Footer() {
 
         </div>
 
-        {/* Bottom bar */}
-        <Reveal delay={0.16}>
-          <div className="py-6 border-t border-[#FAF7F2]/10 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-[#FAF7F2]/50">
-            <p>© {new Date().getFullYear()} Justin Mathais. All rights reserved.</p>
-            <p>Built with care and intention.</p>
-          </div>
-        </Reveal>
+        {/* Bottom bar — intentionally not wrapped in Reveal since it's the
+            last element on the page; a scroll-triggered viewport animation
+            here can fail to fire when there's no room to scroll past it. */}
+        <div className="py-6 border-t border-[#FAF7F2]/10 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-[#FAF7F2]/50">
+          <p>© {new Date().getFullYear()} Justin Mathais. All rights reserved.</p>
+          <p>Built with care and intention.</p>
+        </div>
       </Container>
     </footer>
   );

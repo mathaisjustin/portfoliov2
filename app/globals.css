@@ -9,6 +9,35 @@
   --color-heading: #1C1410;
 }
 
+/* ===== TEXT SELECTION ===== */
+::selection {
+  background-color: #B95E3C;
+  color: #FAF7F2;
+}
+
+/* ===== SCROLLBAR =====
+   Native scrollbar is fully hidden; a custom one is rendered by
+   components/ui/CustomScrollbar.tsx so we have full control over its
+   shape/color regardless of OS/browser scrollbar chrome. */
+html {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* ===== LOADING SCREEN =====
+   Set synchronously (before hydration) by the inline script in
+   app/layout.tsx when this browser session has already seen the intro,
+   so a repeat page load never paints even a flash of it. */
+html.mj-skip-intro [data-mj-loading] {
+  display: none !important;
+}
+
 /* ===== BASE ===== */
 body {
   background-color: var(--color-background) !important;
@@ -50,4 +79,14 @@ h1, h2, h3, h4, h5, h6 {
 
 .animate-border-beam {
   animation: border-beam 2.5s linear infinite;
+}
+
+/* ===== BADGE PULSE ===== */
+@keyframes badge-pulse {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.animate-badge-pulse {
+  animation: badge-pulse 2s ease-in-out infinite;
 }

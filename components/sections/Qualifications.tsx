@@ -1,8 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
 import Container from "@/components/layout/Container";
 import Reveal from "@/components/animations/Reveal";
+import TimelineItem from "@/components/sections/TimelineItem";
 
 interface QualificationItem {
   year: string;
@@ -17,6 +19,12 @@ export default function Qualifications() {
   const [tab, setTab] = useState<"experience" | "education">("experience");
 
   const experience: QualificationItem[] = [
+    {
+      year: "Aug 2026 — Present",
+      role: "Software Engineer 1",
+      org: "Elsevier (RELX Group), Bengaluru, Karnataka",
+      desc: "Onboarding into Elsevier's engineering organization, building foundational knowledge of the team's codebase and architecture alongside senior engineers, and ramping up on Elsevier's development standards including code review and CI/CD processes.",
+    },
     {
       year: "Oct 2025 — Dec 2025",
       role: "Full Stack Development Intern",
@@ -39,12 +47,12 @@ export default function Qualifications() {
 
   const education: QualificationItem[] = [
     {
-      year: "Aug 2024 — Present",
+      year: "Aug 2024 — July 2026",
       role: "Masters in Computer Application (MCA)",
       org: "St Aloysius Deemed to be University AIMIT, Mangaluru",
       tag: "Masters",
-      cgpa: "",
-      desc: "Pursuing a Master's degree focused on advanced software development, cloud computing, and applied computer science.",
+      cgpa: "CGPA 7.9",
+      desc: "Completed a Master's degree focused on advanced software development, cloud computing, and applied computer science.",
     },
     {
       year: "Aug 2020 — May 2023",
@@ -65,6 +73,12 @@ export default function Qualifications() {
   ];
 
   const data = tab === "experience" ? experience : education;
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: timelineRef,
+    offset: ["start center", "end center"],
+  });
+  const lineProgress = useSpring(scrollYProgress, { stiffness: 200, damping: 30 });
 
   return (
     <Container>
@@ -115,53 +129,31 @@ export default function Qualifications() {
       </div>
 
       {/* Timeline */}
-      <div className="relative pl-8">
+      <div ref={timelineRef} className="relative pl-8">
         <div className="absolute left-[7px] top-2 bottom-2 w-px bg-[#C8BAA6]" />
+        <motion.div
+          className="absolute left-[7px] top-2 bottom-2 w-px bg-[#B95E3C] origin-top"
+          style={{ scaleY: lineProgress }}
+        />
 
-        {data.map((item, i) => (
-          <Reveal key={`${tab}-${i}`} delay={i * 0.08}>
-            <div className={`relative ${i < data.length - 1 ? "mb-16" : ""}`}>
-              {/* Dot */}
-              <span className="absolute -left-8 top-1.5 w-3.5 h-3.5 rounded-full bg-[#FAF7F2] border-2 border-[#1C1410]" />
-
-              <div>
-                <div className="flex flex-wrap items-baseline justify-between gap-3">
-                  <h3 className="text-2xl">
-                    {item.role}
-                  </h3>
-
-                  <p className="text-sm opacity-60 whitespace-nowrap">{item.year}</p>
-                </div>
-
-                {(item.tag || item.cgpa) && (
-                  <div className="flex flex-wrap items-center gap-2 mt-2">
-                    {item.tag && (
-                      <span className="text-xs px-2 py-1 rounded-full bg-[#EDE8DF] border border-[#C8BAA6]">
-                        {item.tag}
-                      </span>
-                    )}
-
-                    {item.cgpa && (
-                      <span className="text-xs px-2 py-1 rounded-full bg-[#EDE8DF] border border-[#C8BAA6]">
-                        {item.cgpa}
-                      </span>
-                    )}
-                  </div>
-                )}
-
-                <p className="text-sm opacity-70 italic mt-1">
-                  {item.org}
-                </p>
-
-                {item.desc && (
-                  <p className="text-sm opacity-80 max-w-3xl leading-relaxed mt-3">
-                    {item.desc}
-                  </p>
-                )}
-              </div>
-            </div>
-          </Reveal>
-        ))}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={tab}
+            initial={{ opacity: 0, x: tab === "experience" ? -16 : 16 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: tab === "experience" ? 16 : -16 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+          >
+            {data.map((item, i) => (
+              <TimelineItem
+                key={`${tab}-${i}`}
+                item={item}
+                index={i}
+                isLast={i === data.length - 1}
+              />
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </Container>
   );
